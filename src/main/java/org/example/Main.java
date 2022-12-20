@@ -1,6 +1,7 @@
 package org.example;
 
-import org.example.Game.GameGrid;
+import org.example.Grid.BuildGrid;
+import org.example.Grid.PrintGrid;
 
 import java.util.*;
 
@@ -11,9 +12,9 @@ public class Main {
 
     public static void main(String[] args) {
 
-        int[][] gameGrid = GameGrid.buildInitialGrid(6,6);
+        int[][] gameGrid = BuildGrid.buildInitialGrid(6,6);
 
-        GameGrid.printGridWithColumnHeadings(gameGrid);
+        PrintGrid.printGridWithColumnHeadings(gameGrid);
 
     }
 }
