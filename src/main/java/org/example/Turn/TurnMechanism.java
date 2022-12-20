@@ -5,51 +5,6 @@ import org.example.Grid.PrintGrid;
 
 public class TurnMechanism {
 
-    // check top empty index of selected column
-
-    // cannot add to column if it is full
-
-    // if valid move -> add player's counter to top of column
-
-    public static void main(String[] args) {
-
-        int[][] gameGrid = BuildGrid.buildInitialGrid(6,6);
-
-        //checks
-
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-        takeTurnDropCounter(1, gameGrid[3]);
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-        takeTurnDropCounter(2, gameGrid[4]);
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-        takeTurnDropCounter(1, gameGrid[4]);
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-        takeTurnDropCounter(2, gameGrid[4]);
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-        takeTurnDropCounter(1, gameGrid[4]);
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-        takeTurnDropCounter(2, gameGrid[4]);
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-        takeTurnDropCounter(1, gameGrid[4]);
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-        boolean isValid = takeTurnDropCounter(2, gameGrid[4]);
-
-        if(!isValid) {
-            System.out.printf("move not valid\n");
-        }
-
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-    }
-
     /**
      * Method to 'drop' a player's counter into the top empty space in a column pre-selected by the player
      * <P>The method will return false if the column is full and the play is not valid</P>
