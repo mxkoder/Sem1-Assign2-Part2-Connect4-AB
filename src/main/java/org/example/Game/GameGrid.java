@@ -21,32 +21,40 @@ public class GameGrid {
         // print grid with column headings
     }
 
+//    public static void printGridColumnHeadings(int [][] grid){
+//
+//    }
+
     public static void printGrid(int[][] grid)
     {
         for(int i = 0; i < grid[0].length; i++)
         {
             for(int j = 0; j< grid.length; j++)
             {
-                switch (grid[j][i]) {
-
-                    case -1:
-                        System.out.printf("-\t");
-                        break;
-                    case 1:
-                        System.out.printf("X\t");
-                        break;
-                    case 2:
-                        System.out.printf("O\t");
-                        break;
-                    case 10:
-                        System.out.printf("*\t");
-                        break;
-                    default:
-                        System.out.printf("error.\n");
-                        break;
-                }
+                displayMoveInGrid(grid[j][i]);
             }
             System.out.print("\n");
+        }
+    }
+
+    public static void displayMoveInGrid ( int gridValue) {
+        switch (gridValue) {
+
+            case -1:
+                System.out.printf("-\t");
+                break;
+            case 1:
+                System.out.printf("X\t");
+                break;
+            case 2:
+                System.out.printf("O\t");
+                break;
+            case 10:
+                System.out.printf("*\t");
+                break;
+            default:
+                System.out.printf("error.\n");
+                break;
         }
     }
 
