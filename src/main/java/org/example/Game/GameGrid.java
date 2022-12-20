@@ -1,5 +1,7 @@
 package org.example.Game;
 
+import java.lang.ref.PhantomReference;
+
 public class GameGrid {
 
 
@@ -16,14 +18,29 @@ public class GameGrid {
 //        gameGrid[2][5]= 2;
 //        gameGrid[3][5]= 1;
 
-        printGrid(gameGrid);
+//        printGridColumnHeadings(gameGrid);
+//        printGrid(gameGrid);
+
+        printGridWithColumnHeadings(gameGrid);
 
         // print grid with column headings
     }
 
-//    public static void printGridColumnHeadings(int [][] grid){
-//
-//    }
+    public static void printGridWithColumnHeadings (int [][] grid){
+        printGridColumnHeadings(grid);
+        printGrid(grid);
+    }
+
+    public static void printGridColumnHeadings(int [][] grid){
+
+        for(int i = 0; i < grid.length ; i++)
+        {
+            System.out.printf("%d\t", i);
+        }
+
+        System.out.print("\n");
+
+    }
 
     public static void printGrid(int[][] grid)
     {
@@ -53,7 +70,7 @@ public class GameGrid {
                 System.out.printf("*\t");
                 break;
             default:
-                System.out.printf("error.\n");
+                System.out.printf("error\t");
                 break;
         }
     }
@@ -62,11 +79,11 @@ public class GameGrid {
     {
 
 
-        int[][] grid = new int[columnHeight][numberColumns];
+        int[][] grid = new int[numberColumns][columnHeight];
 
         for(int i = 0; i < numberColumns; i++)
         {
-            grid[i] = buildUnpopulatedStartColumn(numberColumns);
+            grid[i] = buildUnpopulatedStartColumn(columnHeight);
         }
 
         return grid;
