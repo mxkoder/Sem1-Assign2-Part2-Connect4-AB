@@ -24,14 +24,10 @@ public class PrintPlayer {
      */
     public static void printSinglePlayer (Player playerToPrint){
 
-        if(playerToPrint.getCounter() == 1 | playerToPrint.getCounter() == 2) {
+            int counterNumber = playerToPrint.getCounter().getCounterNumber();
 
-            System.out.printf("Player %d ", playerToPrint.getCounter());
-            PrintGrid.displayCounterInGrid(playerToPrint.getCounter());
+            System.out.printf("Player %d ", counterNumber);
+            PrintGrid.displayCounterInGrid(counterNumber);
             System.out.printf("\n");
-        } else {
-
-            System.out.printf("Please initialise players first with valid counter number either 1 (X) or 2 (O). \n");
-        }
     }
 }

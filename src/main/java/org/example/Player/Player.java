@@ -1,23 +1,22 @@
 package org.example.Player;
 
-import org.example.Grid.PrintGrid;
+import org.example.Counters.Counter;
 
 public class Player {
 
-    private int counter = -1;
+    private Counter counter;
     private int blitzMoves;
     private int timeBombMoves;
 
     /**
      * Player object to be used to initialise the two players for the connect 4 game
-     * <p>The Player will initialise with a '-1' value for a counter is no valid counter (either 1 or 2) is selected.</p>
-     * @param counter Integer - input which should have a value of 1 (represents X) or 2 (represents O)
+     * @param counter Counter object - a Counter object with an associated number for the gird value and symbol
      * @param blitzMoves Integer - number of special 'Blitz Moves' the player has available
      * @param timeBombMoves Integer - number of special 'Time Bomb Moves' the player has available
      */
-    public Player(int counter, int blitzMoves, int timeBombMoves){
+    public Player(Counter counter, int blitzMoves, int timeBombMoves){
 
-        if(counter == 1 | counter == 2) {
+        if( counter.getCounterNumber() == 1 | counter.getCounterNumber() == 2) {
 
             this.counter = counter;
             this.blitzMoves = blitzMoves;
@@ -27,7 +26,7 @@ public class Player {
         }
     }
 
-    public int getCounter () {
+    public Counter getCounter () {
         return counter;
     }
 

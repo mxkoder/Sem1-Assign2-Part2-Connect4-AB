@@ -1,5 +1,7 @@
 package org.example.Grid;
 
+import org.example.Counters.Counter;
+
 public class PrintGrid {
 
     /**
@@ -56,10 +58,14 @@ public class PrintGrid {
                 System.out.printf("-\t");
                 break;
             case 1:
-                System.out.printf("X\t");
+                Counter counter1X = Counter.counter1X();
+                Character counter1XSymbol = counter1X.getCounterSymbol();
+                System.out.printf("%c\t", counter1XSymbol);
                 break;
             case 2:
-                System.out.printf("O\t");
+                Counter counter2O = Counter.counter2O();
+                Character counter2OSymbol = counter2O.getCounterSymbol();
+                System.out.printf("%c\t", counter2OSymbol);
                 break;
             case 10:
                 System.out.printf("*\t");
