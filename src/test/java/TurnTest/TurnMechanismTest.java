@@ -65,4 +65,32 @@ public class TurnMechanismTest {
         int[] column14 = {10, 2, 1, 2, 2, 2};
         assertEquals(false, TurnMechanism.takeTurnDropCounter(1, column14));
     }
+
+    @Test
+    void takeTurnDropCounterChangeInColumnTest() {
+
+        int[] column15 = {-1, -1, -1, -1, -1, -1};
+        TurnMechanism.takeTurnDropCounter(1, column15);
+        assertEquals(1, column15[5]);
+        assertEquals(-1, column15[4]);
+        assertEquals(-1, column15[3]);
+
+        int[] column16 = {-1, -1, 1, 1, 1, 1};
+        TurnMechanism.takeTurnDropCounter(1, column16);
+        assertEquals(1, column16[2]);
+        assertEquals(1, column16[1]);
+        assertEquals(-1, column16[0]);
+
+        int[] column17 = {-1, -1, -1, -1, -1, 1};
+        TurnMechanism.takeTurnDropCounter(2, column17);
+        assertEquals(1, column17[5]);
+        assertEquals(2, column17[4]);
+        assertEquals(-1, column17[3]);
+
+        int[] column18 = {-1, 10, 1, 1, 1, 1};
+        TurnMechanism.takeTurnDropCounter(2, column18);
+        assertEquals(1, column18[2]);
+        assertEquals(10, column18[1]);
+        assertEquals(2, column18[0]);
+    }
 }
