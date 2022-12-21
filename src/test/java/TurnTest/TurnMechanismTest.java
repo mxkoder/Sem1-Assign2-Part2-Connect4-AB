@@ -1,11 +1,9 @@
 package TurnTest;
 
-import org.example.Grid.BuildGrid;
 import org.example.Turn.TurnMechanism;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class TurnMechanismTest {
 
