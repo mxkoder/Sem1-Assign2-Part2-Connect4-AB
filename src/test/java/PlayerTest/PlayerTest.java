@@ -29,6 +29,8 @@ public class PlayerTest {
     @Test
     void createNewPlayerInvalidCounterTest () {
 
+        //TODO add mock for counter?
+
         Player player3 = new Player(new Counter(3, 'x'), 1,1);
         assertEquals(null, player3.getCounter());
 
