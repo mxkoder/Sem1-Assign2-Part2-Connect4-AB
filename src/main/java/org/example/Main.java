@@ -2,7 +2,8 @@ package org.example;
 
 
 import org.example.Counters.Counter;
-import org.example.GameWin.GameWin;
+import org.example.GameEnd.Draw;
+import org.example.GameEnd.GameWin;
 import org.example.Grid.BuildGrid;
 import org.example.Grid.PrintGrid;
 import org.example.Player.Player;
@@ -26,21 +27,27 @@ public class Main {
         Player player2 = new Player(counter2O,1,1);
 
         //Initialising game grid
-        int[][] gameGrid = BuildGrid.buildInitialGrid(6,6);
+        int [][] gameGrid = initialise6x6GridAndPrintWithPlayers(player1, player2);
 
-        //Print grid and players
-//        printPlayersAndGrid(player1, player2, gameGrid);
+        // play game until win or draw
+        playGamePrintResult(player1, player2, gameGrid);
 
-        //TODO check while loop is the right way round
-        //TODO make separate method
-        //Taking turns
-        printPlayersAndGrid(player1, player2, gameGrid);
+        //TODO - more checks with different game plays inc diagonals
+        //TODO - check draw again
+
+        //TODO - add option to play the game again?
+        // if want to play again - initialise6x6GridAndPrintWithPlayers() & then playGamePrintResult()
+
+    }
+
+    //TODO tidy up? javadoc & test more
+    public static void playGamePrintResult (Player player1, Player player2, int [][] gameGrid) {
 
         do {
             Turn.playerTakesTurn(player1, gameGrid);
             System.out.printf("\n");
 
-            if(GameWin.haveWinner(gameGrid)) {
+            if(GameWin.haveWinner(gameGrid) || Draw.gameIsADraw(gameGrid)) {
                 printPlayersAndGrid(player1, player2, gameGrid);
                 break;
             }
@@ -50,24 +57,20 @@ public class Main {
             System.out.printf("\n");
 
             printPlayersAndGrid(player1, player2, gameGrid);
-        } while(!GameWin.haveWinner(gameGrid));
+        } while(!GameWin.haveWinner(gameGrid) && !Draw.gameIsADraw(gameGrid));
 
-        //TODO make separate method for this?
-        // change so that method returns the wining player object
-        //Deciding winner
-        int winningCounterInteger = GameWin.winningCounterInteger(gameGrid);
+        GameWin.printWinnerIfGameWon(player1, player2, gameGrid);
 
-        if (player1.getCounter().getCounterNumber() == winningCounterInteger) {
+        Draw.printMessageIfGameDraw(gameGrid);
 
-            System.out.printf("Congratulations!! Player %d you have won the game \n", player1.getCounter().getCounterNumber());
+    }
 
-        } else if (player2.getCounter().getCounterNumber() == winningCounterInteger) {
-            System.out.printf("Congratulations!! Player %d you have won the game \n", player2.getCounter().getCounterNumber());
-        }
+    public static int [][] initialise6x6GridAndPrintWithPlayers (Player player1, Player player2) {
 
+        int[][] emptyGameGrid = BuildGrid.buildInitialGrid(6,6);
+        printPlayersAndGrid(player1, player2, emptyGameGrid);
 
-        //TODO - add option to play the game again?
-
+        return emptyGameGrid;
     }
 
     public static void printPlayersAndGrid (Player player1, Player player2, int [][] gameGrid){

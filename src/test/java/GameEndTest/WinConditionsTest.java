@@ -1,7 +1,7 @@
-package WinConditionsTest;
+package GameEndTest;
 
 
-import org.example.GameWin.WinConditions;
+import org.example.GameEnd.WinConditions;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 

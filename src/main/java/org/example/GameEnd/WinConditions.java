@@ -1,44 +1,10 @@
-package org.example.GameWin;
+package org.example.GameEnd;
 
 import org.example.Grid.BuildGrid;
 import org.example.Grid.PrintGrid;
 import org.example.Player.Player;
 
 public class WinConditions {
-
-    public static void main(String[] args) {
-
-//        int[][] gameGrid = BuildGrid.buildInitialGrid(6,6);
-//
-//        gameGrid[0][5] = 1;
-//        gameGrid[1][5] = 1;
-//        gameGrid[2][5] = 1;
-//        gameGrid[3][5] = -1;
-//        gameGrid[4][5] = -1;
-
-        int[][] gameGrid = {
-                {-1, -1, -1, -1, -1, 1},
-                {-1, -1, -1, -1, 1, -1},
-                {-1, -1, -1, 1, -1, -1},
-                {-1, -1, 1, -1, -1, -1},
-                {-1, -1, -1, -1, -1, -1},
-                {-1, -1, -1, -1, -1, -1}
-        };
-
-
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-//        int hasHorizontal = rowOf4Check(gameGrid);
-//        System.out.printf("the counter no. with horizontal row of 4 is %d\n", hasHorizontal);
-
-
-//        int hasColumn = columnOf4Check(gameGrid);
-//        System.out.printf("the counter no. with column of 4 is %d\n", hasColumn);
-
-        int hasDiagonal = diagonalOf4Check(gameGrid);
-        System.out.printf("the counter no. with diagonal of 4 is %d\n", hasDiagonal);
-
-    }
 
 
     /**
