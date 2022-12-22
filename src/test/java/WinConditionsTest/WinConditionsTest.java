@@ -12,7 +12,7 @@ public class WinConditionsTest {
     void rowOf4CheckNoWinTest () {
 
         int[][] gameGrid1 = {
-                {-1, -1, -1, 1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
                 {-1, -1, -1, -1, -1, -1},
                 {-1, -1, -1, -1, -1, -1},
                 {-1, -1, -1, -1, -1, -1},
@@ -123,7 +123,7 @@ public class WinConditionsTest {
     void columnOf4CheckNoWinTest () {
 
         int[][] gameGrid11 = {
-                {-1, -1, -1, 1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
                 {-1, -1, -1, -1, -1, -1},
                 {-1, -1, -1, -1, -1, -1},
                 {-1, -1, -1, -1, -1, -1},
@@ -227,4 +227,199 @@ public class WinConditionsTest {
         };
         assertEquals(1, WinConditions.columnOf4Check(gameGrid20));
     }
+
+
+    // -----------------------------------------Diagonal of 4 Tests----------------------------------------------
+    @Test
+    void diagonalOf4CheckNoWinTest () {
+
+        int[][] gameGrid21 = {
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(-1, WinConditions.diagonalOf4Check(gameGrid21));
+
+        int[][] gameGrid22 = {
+                {-1, -1, -1, 1, -1, 1},
+                {-1, -1, -1, -1, 1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, 1, -1, -1, -1},
+                {-1, 1, -1, -1, -1, -1},
+                {1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(-1, WinConditions.diagonalOf4Check(gameGrid22));
+
+        int[][] gameGrid23 = {
+                {-1, -1, -1, 1, 1, -1},
+                {-1, -1, -1, 1, -1, -1},
+                {-1, -1, 2, -1, -1, -1},
+                {-1, 1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(-1, WinConditions.diagonalOf4Check(gameGrid23));
+
+        int[][] gameGrid24 = {
+                {-1, -1, -1, 1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, 1, 1, 1, 1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(-1, WinConditions.diagonalOf4Check(gameGrid24));
+
+        int[][] gameGrid25 = {
+                {1, -1, -1, 1, -1, -1},
+                {-1, 1, -1, -1, -1, -1},
+                {-1, -1, 1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, 1, -1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(-1, WinConditions.diagonalOf4Check(gameGrid25));
+
+        int[][] gameGrid26 = {
+                {-1, 1, 1, 1, 2, 1},
+                {-1, -1, -1, -1, -1, -1},
+                {1, -1, -1, -1, -1, -1},
+                {-1, 2, -1, -1, -1, -1},
+                {-1, -1, 2, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(-1, WinConditions.diagonalOf4Check(gameGrid26));
+
+        int[][] gameGrid27 = {
+                {-1, -1, -1, 1, 1, 1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, 1, 2, 2, 2},
+                {-1, -1, -1, 1, -1, -1},
+                {-1, -1, -1, -1, 1, -1}
+        };
+        assertEquals(-1, WinConditions.diagonalOf4Check(gameGrid27));
+
+        int[][] gameGrid28 = {
+                {-1, -1, -1, 1, 1, 1},
+                {-1, -1, -1, 1, 1, 1},
+                {-1, -1, -1, 1, 1, 1},
+                {-1, -1, -1, 1, 1, 1},
+                {-1, -1, -1, 1, 1, 1},
+                {-1, -1, -1, 1, 1, 1}
+        };
+        assertEquals(-1, WinConditions.diagonalOf4Check(gameGrid28));
+
+    }
+
+
+    @Test
+    void diagonalOf4CheckWinTest () {
+
+        int[][] gameGrid29 = {
+                {-1, -1, -1, -1, -1, 1},
+                {-1, -1, -1, -1, 1, -1},
+                {-1, -1, -1, 1, -1, -1},
+                {-1, -1, 1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(1, WinConditions.diagonalOf4Check(gameGrid29));
+
+        int[][] gameGrid30 = {
+                {-1, -1, -1, -1, -1, 2},
+                {-1, -1, -1, -1, 2, -1},
+                {-1, -1, -1, 2, -1, -1},
+                {-1, -1, 2, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(2, WinConditions.diagonalOf4Check(gameGrid30));
+
+        int[][] gameGrid31 = {
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, 1, -1, -1, -1},
+                {-1, -1, -1, 1, -1, -1},
+                {-1, -1, -1, -1, 1, -1},
+                {-1, -1, -1, -1, -1, 1}
+        };
+        assertEquals(1, WinConditions.diagonalOf4Check(gameGrid31));
+
+        int[][] gameGrid32 = {
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, 2, -1, -1, -1},
+                {-1, -1, -1, 2, -1, -1},
+                {-1, -1, -1, -1, 2, -1},
+                {-1, -1, -1, -1, -1, 2}
+        };
+        assertEquals(2, WinConditions.diagonalOf4Check(gameGrid32));
+
+        int[][] gameGrid33 = {
+                {-1, -1, -1, 1, -1, -1},
+                {-1, -1, 1, -1, -1, -1},
+                {-1, 1, -1, -1, -1, -1},
+                {1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(1, WinConditions.diagonalOf4Check(gameGrid33));
+
+        int[][] gameGrid34 = {
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, 2, -1},
+                {-1, -1, -1, 2, -1, -1},
+                {-1, -1, 2, -1, -1, -1},
+                {-1, 2, -1, -1, -1, -1}
+        };
+        assertEquals(2, WinConditions.diagonalOf4Check(gameGrid34));
+
+        int[][] gameGrid35 = {
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, 1, -1, -1, -1, -1},
+                {-1, -1, 1, -1, -1, -1},
+                {-1, -1, -1, 1, -1, -1},
+                {-1, -1, -1, -1, 1, -1}
+        };
+        assertEquals(1, WinConditions.diagonalOf4Check(gameGrid35));
+
+        int[][] gameGrid36 = {
+                {-1, -1, 2, -1, -1, -1},
+                {-1, -1, -1, 2, -1, -1},
+                {-1, -1, -1, -1, 2, -1},
+                {-1, -1, -1, -1, -1, 2},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(2, WinConditions.diagonalOf4Check(gameGrid36));
+
+        int[][] gameGrid37 = {
+                {-1, -1, -1, -1, 1, 1},
+                {-1, -1, -1, 1, 1, 1},
+                {-1, -1, 1, 2, 2, 2},
+                {-1, 1, 2, 2, 1, 2},
+                {2, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(1, WinConditions.diagonalOf4Check(gameGrid37));
+
+        int[][] gameGrid38 = {
+                {-1, -1, -1, -1, -1, 2},
+                {1, -1, -1, -1, -1, 2},
+                {-1, 1, 2, 1, 1, 2},
+                {-1, -1, 1, 2, 2, 1},
+                {-1, -1, -1, 1, 1, 2},
+                {-1, -1, -1, -1, -1, 2}
+        };
+        assertEquals(1, WinConditions.diagonalOf4Check(gameGrid38));
+
+
+    }
+
 }
