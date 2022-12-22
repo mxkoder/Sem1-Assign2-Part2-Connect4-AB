@@ -17,10 +17,10 @@ public class WinConditions {
 //        gameGrid[4][5] = -1;
 
         int[][] gameGrid = {
-                {2, -1, -1, 1, -1, -1},
-                {-1, 2, -1, -1, -1, -1},
-                {-1, -1, 2, -1, -1, -1},
-                {-1, -1, -1, 2, -1, -1},
+                {-1, -1, -1, -1, -1, 1},
+                {-1, -1, -1, -1, 1, -1},
+                {-1, -1, -1, 1, -1, -1},
+                {-1, -1, 1, -1, -1, -1},
                 {-1, -1, -1, -1, -1, -1},
                 {-1, -1, -1, -1, -1, -1}
         };
@@ -39,6 +39,7 @@ public class WinConditions {
         System.out.printf("the counter no. with diagonal of 4 is %d\n", hasDiagonal);
 
     }
+
 
     /**
      * Method to check for a row of 4 identical counters in a game grid
@@ -116,6 +117,7 @@ public class WinConditions {
 
             for (int j = 3; j < gameGrid.length; j++) {
 
+                // Only check for valid player counters, excluding 'empty' cells with a '-1' value
                 if (gameGrid[i][j] != -1) {
 
                     //Diagonal 4 in a row checks for diagonals starting in the bottom left corner of the game grid

@@ -4,7 +4,7 @@ import org.example.Counters.Counter;
 
 public class Player {
 
-    private Counter counter;
+    private Counter counter; // TODO add ID for player number? Here, counter number is the same as the player number
     private int blitzMoves;
     private int timeBombMoves;
 
