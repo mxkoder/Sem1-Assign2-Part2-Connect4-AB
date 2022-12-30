@@ -11,10 +11,10 @@ public class GameWin {
         int winningCounterInteger = winningCounterInteger(gameGrid);
 
         if (player1.getCounter().getCounterNumber() == winningCounterInteger) {
-            System.out.printf("Congratulations!! Player %d you have won the game \n", player1.getCounter().getCounterNumber());
+            System.out.printf("Congratulations!! Player %d you have won the game. \n", player1.getCounter().getCounterNumber());
 
         } else if (player2.getCounter().getCounterNumber() == winningCounterInteger) {
-            System.out.printf("Congratulations!! Player %d you have won the game \n", player2.getCounter().getCounterNumber());
+            System.out.printf("Congratulations!! Player %d you have won the game. \n", player2.getCounter().getCounterNumber());
         }
     }
 

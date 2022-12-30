@@ -24,19 +24,22 @@ public class Main {
         Counter counter2O = Counter.counter2O();
 
         Player player1 = new Player( counter1X, 1, 1);
-        Player player2 = new Player(counter2O,1,1);
+        Player player2 = new Player(counter2O, 1, 1);
 
         //Initialising game grid
         int [][] gameGrid = initialise6x6GridAndPrintWithPlayers(player1, player2);
 
-        // play game until win or draw
+        // Play game until win or draw
         playGamePrintResult(player1, player2, gameGrid);
 
-        //TODO - more checks with different game plays inc diagonals
-        //TODO - check draw again
+        //Option to play the game again
+        boolean chooseToReplay;
+        do {
+            chooseToReplay = gameReplay(player1, player2);
 
-        //TODO - add option to play the game again?
-        // if want to play again - initialise6x6GridAndPrintWithPlayers() & then playGamePrintResult()
+        } while (chooseToReplay);
+
+        //TODO - check game draw again
 
     }
 
@@ -77,5 +80,34 @@ public class Main {
 
         PrintPlayer.displayPlayers(player1, player2);
         PrintGrid.printGridWithColumnHeadings(gameGrid);
+    }
+
+    //TODO keep here or move?
+    public static boolean gameReplay (Player player1, Player player2){
+
+        String choice;
+
+        System.out.printf("Would you like to play another game of Connect4 ? \n");
+
+        while(true){
+            System.out.printf("Please enter Y or N: \n");
+            choice = stdin.nextLine().toUpperCase();
+
+            switch(choice){
+                case "Y":
+                    System.out.printf("You have chosen to play another game of Connect4. \n");
+
+                    //TODO - if add more gameplay option, edit the method that's called here
+                    int [][] gameGrid = initialise6x6GridAndPrintWithPlayers(player1, player2);
+                    playGamePrintResult(player1, player2, gameGrid);
+
+                    return true;
+                case "N":
+                    System.out.printf("Thank you for playing Connect4, you are now exiting the program. \n");
+                    return false;
+                default:
+                    System.out.printf("Invalid input. \n");
+            }
+        }
     }
 }
