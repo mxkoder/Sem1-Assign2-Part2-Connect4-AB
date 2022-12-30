@@ -6,8 +6,6 @@ public class GameWin {
 
     public static void printWinnerIfGameWon (Player player1, Player player2, int [][] gameGrid ) {
 
-        // TODO change so that method returns the wining player object?
-
         int winningCounterInteger = winningCounterInteger(gameGrid);
 
         if (player1.getCounter().getCounterNumber() == winningCounterInteger) {

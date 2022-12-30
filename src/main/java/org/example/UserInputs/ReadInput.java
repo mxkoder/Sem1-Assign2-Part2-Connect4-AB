@@ -41,7 +41,7 @@ public class ReadInput {
             }
             catch (NumberFormatException e)
             {
-                System.out.printf("The number entered is invalid. Please enter a whole number.");
+                System.out.printf("The value entered is not valid. Please enter a whole number:");
             }
         } while(true);
 
