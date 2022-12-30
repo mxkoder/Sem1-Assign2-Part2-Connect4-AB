@@ -52,27 +52,24 @@ public class PrintGrid {
      */
     public static void displayCounterInGrid ( int gridValue) {
 
-        switch (gridValue) {
+        Counter counter1X = Counter.counter1X();
+        Counter counter2O = Counter.counter2O();
 
-            case -1:
-                System.out.printf("-\t");
-                break;
-            case 1:
-                Counter counter1X = Counter.counter1X();
-                Character counter1XSymbol = counter1X.getCounterSymbol();
-                System.out.printf("%c\t", counter1XSymbol);
-                break;
-            case 2:
-                Counter counter2O = Counter.counter2O();
-                Character counter2OSymbol = counter2O.getCounterSymbol();
-                System.out.printf("%c\t", counter2OSymbol);
-                break;
-            case 10:
-                System.out.printf("*\t");
-                break;
-            default:
-                System.out.printf("error\t");
-                break;
+        if (gridValue == -1) {
+            System.out.printf("-\t");
+
+        } else if (gridValue == counter1X.getCounterNumber() ) {
+            System.out.printf("%c\t", counter1X.getCounterSymbol());
+
+        } else if (gridValue == counter2O.getCounterNumber()) {
+            System.out.printf("%c\t", counter2O.getCounterSymbol());
+
+        //TODO change this to connect with special move timebomb object
+        } else if (gridValue == 10) {
+            System.out.printf("*\t");
+
+        } else {
+            System.out.printf("error\t");
         }
     }
 
