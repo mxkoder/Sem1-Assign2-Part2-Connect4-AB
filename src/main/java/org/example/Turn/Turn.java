@@ -30,6 +30,7 @@ public class Turn {
         int minColumnNumber = 0;
         int maxColumnNumber = gameGrid.length - 1;
 
+        //TODO change so can accept strings / characters
         System.out.printf("Player %d Select Column:", playerCounterNumber);
         int selectedColumn = ReadInput.readIntFromConsoleInRangeWithPrompt(
                 minColumnNumber,
@@ -37,6 +38,20 @@ public class Turn {
                 "Please select a valid column by entering an integer between");
 
         return selectedColumn;
+
+        // https://www.studytonight.com/java-examples/check-if-input-is-integer-in-java#:~:text=hasNextInt()%20method%20checks%20whether,otherwise%20it%20will%20return%20false.
+//        public static void main(String[] args)
+//        {
+//            Scanner sc = new Scanner(System.in);
+//            if(sc.hasNextInt()) {
+//                System.out.println(sc.nextInt()+" is valid Integer");
+//            }
+//            else
+//            {
+//                System.out.println(sc.nextInt()+" is valid Integer");
+//            }
+//            sc.close();
+//        }
     }
 
 }
