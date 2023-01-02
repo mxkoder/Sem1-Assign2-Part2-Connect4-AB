@@ -6,7 +6,7 @@ import org.example.Turn.Turn;
 
 public class SpecialMove {
 
-
+    //TODO - add java doc, add tests where can
     private int moveNumberInGrid;
     private Character moveSymbolInGrid;
     private int numberOfMoves;
@@ -52,7 +52,7 @@ public class SpecialMove {
             Blitz.blitzMoveDialogue(gameGrid, turnPlayer, otherPlayer);
 
         } else {
-            System.out.printf("Invalid command. Please enter either a column index to drop your counter or a valid special move command.\n");
+            Turn.errorMessageInvalidCommand();
             Turn.interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
 
         }

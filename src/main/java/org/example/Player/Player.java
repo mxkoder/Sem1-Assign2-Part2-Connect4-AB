@@ -35,7 +35,12 @@ public class Player {
         return blitz;
     }
 
+    public void setBlitz (SpecialMove blitz) {
+        this.blitz = blitz;
+    }
+
     public int getTimeBombMoves () {
         return timeBombMoves;
     }
+
 }

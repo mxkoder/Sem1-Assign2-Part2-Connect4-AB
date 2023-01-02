@@ -1,6 +1,8 @@
 package org.example.GamePlay;
 
 import org.example.Player.Player;
+import org.example.SpecialMoves.Blitz;
+import org.example.SpecialMoves.SpecialMove;
 
 import java.util.Scanner;
 
@@ -52,6 +54,12 @@ public class GameReplay {
                     //TODO - if add more gameplay option, edit the method that's called here
                     //TODO - make sure players are reset to their starting special moves
                     int [][] gameGrid = GamePlay.initialise6x6GridAndPrintWithPlayers(player1, player2);
+
+                    //TODO seperate out into a 'reset players' method? After add TimeBomb
+                    SpecialMove blitz = Blitz.blitzInitialise();
+                    player1.setBlitz(blitz);
+                    player2.setBlitz(blitz);
+
                     GamePlay.choosePlayerPlayGame(player1, player2, gameGrid);
                     return true;
 

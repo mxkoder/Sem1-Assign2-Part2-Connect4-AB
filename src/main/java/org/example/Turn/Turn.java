@@ -1,6 +1,7 @@
 package org.example.Turn;
 
 import org.example.Counters.Counter;
+import org.example.GamePlay.GamePlay;
 import org.example.Grid.PrintGrid;
 import org.example.Player.Player;
 import org.example.SpecialMoves.Blitz;
@@ -11,6 +12,7 @@ import java.util.*;
 
 public class Turn {
 
+    //TODO - add java doc, add tests where can
     private static Scanner stdin = new Scanner(System.in);
 
     public static void main(String[] args) {
@@ -48,23 +50,28 @@ public class Turn {
         playerSelectColumnPrompt(turnPlayer);
         String playerInput = stdin.nextLine();
 
+        //TODO check what if enter non integer eg 1uioy3?, or A123B?
         if(playerInput.matches("^[0-9]*$")) {
             int selectedColumnIndex = Integer.parseInt(playerInput);
 
             //System.out.printf("selected column index is %d \n", selectedColumnIndex);
 
-            //TODO check what if enter non integer eg 1uioy3?
-            checkColumnIndex(gameGrid,selectedColumnIndex, turnPlayer, otherPlayer);
+            boolean indexIsValid = checkColumnIndex(gameGrid,selectedColumnIndex, turnPlayer, otherPlayer);
 
+            if(indexIsValid) {
+                playerTakesNormalTurn(turnPlayer, gameGrid, selectedColumnIndex);
 
-            playerTakesNormalTurn(turnPlayer, gameGrid, selectedColumnIndex);
+            } else {
+                errorMessageInvalidCommand();
+                interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
+            }
 
         } else if (playerInput.matches("^[a-zA-Z]*$")) {
             String moveCommand = playerInput.toUpperCase();
             SpecialMove.specialMoveCommand(moveCommand, turnPlayer, otherPlayer, gameGrid);
 
         } else {
-            System.out.printf("Please enter a either a valid column index number or a single letter command for a special move. \n");
+            errorMessageInvalidCommand();
             interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
 
         }
@@ -84,7 +91,7 @@ public class Turn {
 
         if(!turnTaken){
 
-            System.out.printf("Please make sure you have selected a column that has space for a counter and is not full. \n");
+            errorMessageInvalidCommand();
             playerTakesNormalTurn(player, gameGrid, selectedColumnIndex);
         }
     }
@@ -97,7 +104,7 @@ public class Turn {
 
     }
 
-    public static void checkColumnIndex (int[][] gameGrid, int selectedColumn, Player turnPlayer, Player otherPlayer) {
+    public static boolean checkColumnIndex (int[][] gameGrid, int selectedColumn, Player turnPlayer, Player otherPlayer) {
 
         int minColumnNumber = 0;
         int maxColumnNumber = gameGrid.length - 1;
@@ -106,14 +113,20 @@ public class Turn {
                 minColumnNumber,
                 maxColumnNumber,
                 selectedColumn,
-                "Please select a valid column by entering an integer between");
+                "To drop a counter please select a valid column by entering an integer between");
 
         if(!columnIndexValid){
 
-            interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
+            return false;
         }
 
+        return true;
 
+    }
+
+    public static void errorMessageInvalidCommand () {
+
+        System.out.printf("Please enter a either a valid column index number or a single letter command for a special move. \n");
     }
 
 
