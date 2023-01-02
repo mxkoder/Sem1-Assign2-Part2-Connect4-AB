@@ -4,7 +4,7 @@ import java.util.Scanner;
 
 public class ReadInput {
 
-    private static final Scanner stdin = new Scanner(System.in);
+    private static Scanner stdin = new Scanner(System.in);
 
     /**(EE)
      * Function that takes in an input prompt (an instruction visible on the console). User enters a string which gets converted into an int.
@@ -72,6 +72,18 @@ public class ReadInput {
 
             System.out.printf("%s %d and %d.\n", promptMessage, rangeMin, rangeMax);
         }
+    }
+
+    public static boolean checkIntIsInRangeWithPrompt(int rangeMin, int rangeMax, int inputInteger, String promptMessage)
+    {
+            if(inputInteger >= rangeMin && inputInteger <= rangeMax)
+            {
+                return true;
+            }
+
+            System.out.printf("%s %d and %d.\n", promptMessage, rangeMin, rangeMax);
+            return false;
+
     }
 
 

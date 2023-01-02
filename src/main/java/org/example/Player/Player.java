@@ -1,11 +1,12 @@
 package org.example.Player;
 
 import org.example.Counters.Counter;
+import org.example.SpecialMoves.SpecialMove;
 
 public class Player {
 
     private Counter counter; // TODO add ID for player number? Here, counter number is the same as the player number
-    private int blitzMoves;
+    private SpecialMove blitz; //TODO make edits - changed to object here
     private int timeBombMoves;
 
     /**
@@ -14,12 +15,12 @@ public class Player {
      * @param blitzMoves Integer - number of special 'Blitz Moves' the player has available
      * @param timeBombMoves Integer - number of special 'Time Bomb Moves' the player has available
      */
-    public Player(Counter counter, int blitzMoves, int timeBombMoves){
+    public Player(Counter counter, SpecialMove blitz, int timeBombMoves){
 
         if( counter.getCounterNumber() == 1 | counter.getCounterNumber() == 2) {
 
             this.counter = counter;
-            this.blitzMoves = blitzMoves;
+            this.blitz = blitz;
             this.timeBombMoves = timeBombMoves;
         } else {
             System.out.printf("Please choose a valid counter number of either 1 (X) or 2 (O) \n");
@@ -30,8 +31,8 @@ public class Player {
         return counter;
     }
 
-    public int getBlitzMoves () {
-        return blitzMoves;
+    public SpecialMove getBlitz () {
+        return blitz;
     }
 
     public int getTimeBombMoves () {

@@ -2,6 +2,7 @@ package org.example.SpecialMoves;
 
 import org.example.Counters.Counter;
 import org.example.Player.Player;
+import org.example.Turn.Turn;
 
 public class SpecialMove {
 
@@ -35,14 +36,25 @@ public class SpecialMove {
         return moveCommand;
     }
 
-    public static void useUp1Move ( SpecialMove specialMoveObject) {
-        specialMoveObject.numberOfMoves -= 1;
+    public boolean useUp1Move () {
+
+        if(this.numberOfMoves < 1) {
+            return false;
+        }
+
+        this.numberOfMoves -= 1;
+        return true;
     }
 
-    public static void specialMoveCommand (String command, Player player1,Player player2, int[][] gameGrid) {
+    public static void specialMoveCommand (String command, Player turnPlayer,Player otherPlayer, int[][] gameGrid) {
 
-        if(command == Blitz.blitzInitialise().getMoveCommand()) {
-            Blitz.blitzMoveDialogue(gameGrid);
+        if(command.equals(Blitz.blitzInitialise().getMoveCommand()) ) {
+            Blitz.blitzMoveDialogue(gameGrid, turnPlayer, otherPlayer);
+
+        } else {
+            System.out.printf("Invalid command. Please enter either a column index to drop your counter or a valid special move command.\n");
+            Turn.interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
+
         }
     }
 

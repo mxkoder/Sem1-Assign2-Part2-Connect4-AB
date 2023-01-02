@@ -1,5 +1,7 @@
 package org.example.SpecialMoves;
 
+import org.example.Counters.Counter;
+import org.example.GamePlay.GamePlay;
 import org.example.Grid.BuildGrid;
 import org.example.Grid.PrintGrid;
 import org.example.Player.Player;
@@ -10,6 +12,14 @@ public class Blitz {
     //TODO test - on blitz move mechanics
     //TODO write java doc
     public static void main(String[] args) {
+
+        // Player and Counters setup
+        Counter counter1X = Counter.counter1X();
+        Counter counter2O = Counter.counter2O();
+
+        SpecialMove blitz = Blitz.blitzInitialise();
+        Player player1 = new Player( counter1X, blitz, 1);
+        Player player2 = new Player(counter2O, blitz, 1);
 
         int[][] gameGrid = {
                 {-1, -1, -1, 1, -1, -1},
@@ -22,16 +32,27 @@ public class Blitz {
 
         PrintGrid.printGridWithColumnHeadings(gameGrid);
 
-        blitzMoveDialogue(gameGrid);
+        blitzMoveDialogue(gameGrid, player1, player2);
 
         System.out.printf("after blitz \n");
         PrintGrid.printGridWithColumnHeadings(gameGrid);
     }
 
-    public static void blitzMoveDialogue (int[][] gameGrid) {
+    public static void blitzMoveDialogue (int[][] gameGrid, Player turnPlayer, Player otherPlayer) {
 
-        int selectedColumn = blitzSelectColumnPrompt(gameGrid);
-        blitzMoveMechanics(gameGrid, selectedColumn);
+        boolean haveMovesAvailable = turnPlayer.getBlitz().useUp1Move();
+
+        if(haveMovesAvailable) {
+            int selectedColumn = blitzSelectColumnPrompt(gameGrid);
+            blitzMoveMechanics(gameGrid, selectedColumn, turnPlayer, otherPlayer);
+            System.out.printf("You have successfully Blitzed column %d.\n", selectedColumn);
+
+        } else {
+            System.out.printf("You have already used up your Blitz move. Please take your turn with a valid column index or special move with moves remaining.\n");
+            GamePlay.playGamePrintResult(turnPlayer, otherPlayer, gameGrid);
+
+        }
+
     }
 
     public static int blitzSelectColumnPrompt (int[][] gameGrid){
@@ -47,7 +68,7 @@ public class Blitz {
 
         return selectedColumn;
     }
-    public static void blitzMoveMechanics ( int[][] gameGrid, int blitzColumnIndex) {
+    public static void blitzMoveMechanics ( int[][] gameGrid, int blitzColumnIndex, Player turnPlayer, Player otherPlayer) {
 
         int columnHeight = gameGrid[0].length;
 

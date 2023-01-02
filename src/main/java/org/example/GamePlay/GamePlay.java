@@ -64,7 +64,7 @@ public class GamePlay {
     public static void playGamePrintResult (Player player1, Player player2, int [][] gameGrid) {
 
         do {
-            Turn.playerTakesTurn(player1, gameGrid);
+            Turn.interpretPlayerCommand(player1, player2, gameGrid);
             System.out.printf("\n");
 
             if(GameWin.haveWinner(gameGrid) || Draw.gameIsADraw(gameGrid)) {
@@ -73,10 +73,11 @@ public class GamePlay {
             }
 
             printPlayersAndGrid(player1, player2, gameGrid);
-            Turn.playerTakesTurn(player2, gameGrid);
+            Turn.interpretPlayerCommand(player2, player1, gameGrid);
             System.out.printf("\n");
 
             printPlayersAndGrid(player1, player2, gameGrid);
+
         } while(!GameWin.haveWinner(gameGrid) && !Draw.gameIsADraw(gameGrid));
 
         GameWin.printWinnerIfGameWon(player1, player2, gameGrid);
