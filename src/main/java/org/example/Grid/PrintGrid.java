@@ -1,6 +1,8 @@
 package org.example.Grid;
 
 import org.example.Counters.Counter;
+import org.example.SpecialMoves.SpecialMove;
+import org.example.SpecialMoves.TimeBomb;
 
 public class PrintGrid {
 
@@ -54,6 +56,7 @@ public class PrintGrid {
 
         Counter counter1X = Counter.counter1X();
         Counter counter2O = Counter.counter2O();
+        SpecialMove timeBomb = TimeBomb.timeBombInitialise();
 
         if (gridValue == -1) {
             System.out.printf("-\t");
@@ -64,9 +67,8 @@ public class PrintGrid {
         } else if (gridValue == counter2O.getCounterNumber()) {
             System.out.printf("%c\t", counter2O.getCounterSymbol());
 
-        //TODO change this to connect with special move timebomb object
-        } else if (gridValue == 10) {
-            System.out.printf("*\t");
+        } else if (gridValue == timeBomb.getMoveNumberInGrid()) {
+            System.out.printf("%s\t", timeBomb.getMoveSymbolInGrid());
 
         } else {
             System.out.printf("error\t");

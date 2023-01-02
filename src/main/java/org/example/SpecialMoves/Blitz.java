@@ -55,6 +55,7 @@ public class Blitz {
 
     }
 
+    //TODO combine with timebomb command?
     public static int blitzSelectColumnPrompt (int[][] gameGrid){
 
         int minColumnNumber = 0;
@@ -68,6 +69,7 @@ public class Blitz {
 
         return selectedColumn;
     }
+
     public static void blitzMoveMechanics ( int[][] gameGrid, int blitzColumnIndex, Player turnPlayer, Player otherPlayer) {
 
         int columnHeight = gameGrid[0].length;

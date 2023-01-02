@@ -3,6 +3,7 @@ package org.example.GamePlay;
 import org.example.Player.Player;
 import org.example.SpecialMoves.Blitz;
 import org.example.SpecialMoves.SpecialMove;
+import org.example.SpecialMoves.TimeBomb;
 
 import java.util.Scanner;
 
@@ -51,14 +52,10 @@ public class GameReplay {
                 case "Y":
                     System.out.printf("You have chosen to play another game of Connect4. \n");
 
-                    //TODO - if add more gameplay option, edit the method that's called here
-                    //TODO - make sure players are reset to their starting special moves
+                    //TODO - if add more grid size gameplay options, edit the method that's called here
                     int [][] gameGrid = GamePlay.initialise6x6GridAndPrintWithPlayers(player1, player2);
 
-                    //TODO seperate out into a 'reset players' method? After add TimeBomb
-                    SpecialMove blitz = Blitz.blitzInitialise();
-                    player1.setBlitz(blitz);
-                    player2.setBlitz(blitz);
+                    resetPlayers(player1, player2);
 
                     GamePlay.choosePlayerPlayGame(player1, player2, gameGrid);
                     return true;
@@ -73,5 +70,22 @@ public class GameReplay {
         }
     }
 
+    /**
+     * Method to reset players to their original Special Move settings
+     * <p>Players keep the same counters</p>
+     * @param player1 Player object with associated counter and special moves
+     * @param player2 Player object with associated counter and special moves
+     */
+    public static void resetPlayers (Player player1, Player player2) {
+
+        SpecialMove blitz = Blitz.blitzInitialise();
+        SpecialMove timeBomb = TimeBomb.timeBombInitialise();
+
+        player1.setBlitz(blitz);
+        player2.setBlitz(blitz);
+
+        player1.setTimeBomb(timeBomb);
+        player2.setTimeBomb(timeBomb);
+    }
 
 }

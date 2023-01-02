@@ -7,6 +7,7 @@ import org.example.GamePlay.GameReplay;
 import org.example.Player.Player;
 import org.example.SpecialMoves.Blitz;
 import org.example.SpecialMoves.SpecialMove;
+import org.example.SpecialMoves.TimeBomb;
 
 import java.util.*;
 
@@ -17,18 +18,17 @@ public class Main {
 
     public static void main(String[] args) {
 
+        //TODO - change hardcoded special move numbers to set methods / make an 'initialise player' method?s
+
         // Player and Counters setup
         Counter counter1X = Counter.counter1X();
         Counter counter2O = Counter.counter2O();
 
         SpecialMove blitz = Blitz.blitzInitialise();
+        SpecialMove timeBomb = TimeBomb.timeBombInitialise();
 
-        //TODO special moves - need to make sure players are re initialised to
-        // starting no special moves if replay
-
-        //TODO - change hardcoded special move numbers to set methods / make an 'initialise player' method?s
-        Player player1 = new Player( counter1X, blitz, 1);
-        Player player2 = new Player(counter2O, blitz, 1);
+        Player player1 = new Player( counter1X, blitz, timeBomb);
+        Player player2 = new Player(counter2O, blitz, timeBomb);
 
         //Initialising game grid
         int [][] gameGrid = GamePlay.initialise6x6GridAndPrintWithPlayers(player1, player2);

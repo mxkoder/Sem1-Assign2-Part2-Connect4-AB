@@ -48,10 +48,14 @@ public class SpecialMove {
 
     public static void specialMoveCommand (String command, Player turnPlayer,Player otherPlayer, int[][] gameGrid) {
 
-        if(command.equals(Blitz.blitzInitialise().getMoveCommand()) ) {
+        if( command.equals(Blitz.blitzInitialise().getMoveCommand()) ) {
             Blitz.blitzMoveDialogue(gameGrid, turnPlayer, otherPlayer);
 
-        } else {
+        } else if ( command.equals(TimeBomb.timeBombInitialise().getMoveCommand()) ) {
+            //TODO add method for time bomb
+        }
+
+        else {
             Turn.errorMessageInvalidCommand();
             Turn.interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
 

@@ -1,11 +1,11 @@
 package org.example.Turn;
 
 import org.example.Counters.Counter;
-import org.example.GamePlay.GamePlay;
 import org.example.Grid.PrintGrid;
 import org.example.Player.Player;
 import org.example.SpecialMoves.Blitz;
 import org.example.SpecialMoves.SpecialMove;
+import org.example.SpecialMoves.TimeBomb;
 import org.example.UserInputs.ReadInput;
 
 import java.util.*;
@@ -21,8 +21,10 @@ public class Turn {
         Counter counter2O = Counter.counter2O();
 
         SpecialMove blitz = Blitz.blitzInitialise();
-        Player player1 = new Player( counter1X, blitz, 1);
-        Player player2 = new Player(counter2O, blitz, 1);
+        SpecialMove timeBomb = TimeBomb.timeBombInitialise();
+
+        Player player1 = new Player( counter1X, blitz, timeBomb);
+        Player player2 = new Player(counter2O, blitz, timeBomb);
 
 
 
