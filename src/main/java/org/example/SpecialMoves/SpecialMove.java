@@ -6,7 +6,7 @@ import org.example.Turn.Turn;
 
 public class SpecialMove {
 
-    //TODO - add java doc, add tests where can
+    //TODO add javadoc and tests
     private int moveNumberInGrid;
     private Character moveSymbolInGrid;
     private int numberOfMoves;
@@ -52,7 +52,7 @@ public class SpecialMove {
             Blitz.blitzMoveDialogue(gameGrid, turnPlayer, otherPlayer);
 
         } else if ( command.equals(TimeBomb.timeBombInitialise().getMoveCommand()) ) {
-            //TODO add method for time bomb
+            TimeBomb.timeBombMoveDialogue(turnPlayer, otherPlayer, gameGrid);
         }
 
         else {

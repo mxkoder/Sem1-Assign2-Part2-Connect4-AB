@@ -1,11 +1,15 @@
 package org.example.GameEnd;
 
+import org.example.GamePlay.GamePlay;
+import org.example.Player.Player;
+
 public class Draw {
 
 
-    public static void printMessageIfGameDraw (int [][] gameGrid) {
+    public static void printMessageIfGameDraw (Player player1, Player player2, int [][] gameGrid) {
 
         if(gameIsADraw(gameGrid)) {
+            GamePlay.printPlayersAndGrid(player1, player2, gameGrid);
             System.out.printf("The game is a draw! Neither player has won this time around. \n");
         }
 

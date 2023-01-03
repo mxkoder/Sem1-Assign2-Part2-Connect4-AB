@@ -63,27 +63,30 @@ public class GamePlay {
      */
     public static void playGamePrintResult (Player player1, Player player2, int [][] gameGrid) {
 
+        // Take turns to play until the game ends
         do {
-            Turn.interpretPlayerCommand(player1, player2, gameGrid);
-            System.out.printf("\n");
+            singleTurnWithPrint(player1, player2, gameGrid);
 
             if(GameWin.haveWinner(gameGrid) || Draw.gameIsADraw(gameGrid)) {
                 printPlayersAndGrid(player1, player2, gameGrid);
                 break;
             }
 
-            printPlayersAndGrid(player1, player2, gameGrid);
-            Turn.interpretPlayerCommand(player2, player1, gameGrid);
-            System.out.printf("\n");
-
-            printPlayersAndGrid(player1, player2, gameGrid);
+            singleTurnWithPrint(player2, player1, gameGrid);
 
         } while(!GameWin.haveWinner(gameGrid) && !Draw.gameIsADraw(gameGrid));
 
+        // Game results:
         GameWin.printWinnerIfGameWon(player1, player2, gameGrid);
+        Draw.printMessageIfGameDraw(player1, player2, gameGrid);
 
-        Draw.printMessageIfGameDraw(gameGrid);
+    }
 
+    //TODO java doc
+    public static void singleTurnWithPrint (Player player1, Player player2, int [][] gameGrid) {
+        printPlayersAndGrid(player1, player2, gameGrid);
+        Turn.interpretPlayerCommand(player1, player2, gameGrid);
+        System.out.printf("\n");
     }
 
 

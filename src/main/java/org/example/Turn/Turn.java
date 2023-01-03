@@ -52,22 +52,29 @@ public class Turn {
         playerSelectColumnPrompt(turnPlayer);
         String playerInput = stdin.nextLine();
 
-        //TODO check what if enter non integer eg 1uioy3?, or A123B?
+        // Process for column index commands
         if(playerInput.matches("^[0-9]*$")) {
-            int selectedColumnIndex = Integer.parseInt(playerInput);
 
-            //System.out.printf("selected column index is %d \n", selectedColumnIndex);
-
-            boolean indexIsValid = checkColumnIndex(gameGrid,selectedColumnIndex, turnPlayer, otherPlayer);
-
-            if(indexIsValid) {
-                playerTakesNormalTurn(turnPlayer, gameGrid, selectedColumnIndex);
-
-            } else {
+            if(playerInput == "") {
                 errorMessageInvalidCommand();
                 interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
+
+            } else {
+                int selectedColumnIndex = Integer.parseInt(playerInput);
+
+                boolean indexIsValid = checkColumnIndex(gameGrid, selectedColumnIndex, turnPlayer, otherPlayer);
+
+                // Checking if integer input by player is a valid column index
+                if (indexIsValid) {
+                    playerTakesNormalTurn(turnPlayer, gameGrid, selectedColumnIndex);
+
+                } else {
+                    errorMessageInvalidCommand();
+                    interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
+                }
             }
 
+        // Process for Special Move letter commands
         } else if (playerInput.matches("^[a-zA-Z]*$")) {
             String moveCommand = playerInput.toUpperCase();
             SpecialMove.specialMoveCommand(moveCommand, turnPlayer, otherPlayer, gameGrid);

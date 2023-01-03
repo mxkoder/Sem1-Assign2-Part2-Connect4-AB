@@ -18,8 +18,10 @@ public class Blitz {
         Counter counter2O = Counter.counter2O();
 
         SpecialMove blitz = Blitz.blitzInitialise();
-        Player player1 = new Player( counter1X, blitz, 1);
-        Player player2 = new Player(counter2O, blitz, 1);
+        SpecialMove timeBomb = TimeBomb.timeBombInitialise();
+
+        Player player1 = new Player( counter1X, blitz, timeBomb);
+        Player player2 = new Player(counter2O, blitz, timeBomb);
 
         int[][] gameGrid = {
                 {-1, -1, -1, 1, -1, -1},
@@ -42,13 +44,14 @@ public class Blitz {
 
         boolean haveMovesAvailable = turnPlayer.getBlitz().useUp1Move();
 
+        // Only let a player use their special move if they have enough special moves left
         if(haveMovesAvailable) {
             int selectedColumn = blitzSelectColumnPrompt(gameGrid);
             blitzMoveMechanics(gameGrid, selectedColumn, turnPlayer, otherPlayer);
             System.out.printf("You have successfully Blitzed column %d.\n", selectedColumn);
 
         } else {
-            System.out.printf("You have already used up your Blitz move. Please take your turn with a valid column index or special move with moves remaining.\n");
+            System.out.printf("You have already used up your Blitz move. Please take your turn with a valid column index or special move with moves remaining.\n\n");
             GamePlay.playGamePrintResult(turnPlayer, otherPlayer, gameGrid);
 
         }
