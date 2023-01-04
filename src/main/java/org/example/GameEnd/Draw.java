@@ -5,18 +5,26 @@ import org.example.Player.Player;
 
 public class Draw {
 
-
+    /**
+     * Method to print a message if the result of the game is a draw
+     * @param player1 - Player object with associated counter and special moves
+     * @param player2 - Player object with associated counter and special moves
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     */
     public static void printMessageIfGameDraw (Player player1, Player player2, int [][] gameGrid) {
 
         if(gameIsADraw(gameGrid)) {
             GamePlay.printPlayersAndGrid(player1, player2, gameGrid);
             System.out.printf("The game is a draw! Neither player has won this time around. \n");
         }
-
     }
 
-
-    //TODO javadoc comments and test
+    /**
+     * Method to determine if a game of connect4 is a draw
+     * <p>Game will result in a draw if the grid is filled but there is no winner</p>
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     * @return boolean - True if the game is a draw, false otherwise
+     */
     public static boolean gameIsADraw (int [][] gameGrid) {
 
         if ( !GameWin.haveWinner(gameGrid) && gridIsFilled(gameGrid) ) {
@@ -27,8 +35,11 @@ public class Draw {
     }
 
 
-    //TODO add Java doc method comment
-    //TODO - check interaction with Time bomb - make sure do the check to see if the game is a draw AFTER the time bomb could have gone off following a player's 2nd turn
+    /**
+     * Method to check if the game grid is filled with counters or not
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     * @return boolean - true if the game grid is willed with counters, false if there is at least one empty  space (-1 value)
+     */
     public static boolean gridIsFilled (int[][] gameGrid) {
 
         boolean gridIsFilled = true;
@@ -39,10 +50,10 @@ public class Draw {
             {
                 if(gameGrid[j][i] == -1) {
 
+                    //Cells with a '-1' value are empty and do not contain a player counter
                     gridIsFilled = false;
                 }
             }
-
         }
 
         return gridIsFilled;

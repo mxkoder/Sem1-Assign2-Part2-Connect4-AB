@@ -20,7 +20,7 @@ public class TimeBomb {
 
         int numberOfEmptySpacesInGrid = numberEmptySpacesInGrid(gameGrid);
 
-        // Only let a player use a time bomb move if there are are enough turns left for the time bomb to go off
+        // Only let a player use a time bomb move if there are enough turns left for the time bomb to go off
         if (numberOfEmptySpacesInGrid >= 4) {
 
             boolean haveMovesAvailable = turnPlayer.getTimeBomb().useUp1Move();
@@ -43,7 +43,6 @@ public class TimeBomb {
             System.out.printf("Your time bomb won't go off before the game grid is full, you're better off placing your counter.\n\n");
             GamePlay.playGamePrintResult(turnPlayer, otherPlayer, gameGrid);
         }
-
     }
 
     public static int timeBombSelectColumnPrompt (int[][] gameGrid){
@@ -70,6 +69,7 @@ public class TimeBomb {
         int[] selectedColumn = gameGrid[timeBombColumnIndex];
         int timeBombRowIndex = TurnMechanism.getTopColumnEmptyIndex(selectedColumn) + 1;
 
+
         // ----------Other player, 1st turn during time bomb ------------------------
         GamePlay.singleTurnWithPrint(otherPlayer, turnPlayer, gameGrid);
 
@@ -79,9 +79,11 @@ public class TimeBomb {
         // ----------Other player, 2nd turn during time bomb ------------------------
         GamePlay.singleTurnWithPrint(otherPlayer, turnPlayer, gameGrid);
 
+
         // ----------Time Bomb explodes ------------------------
         timeBombExplosion(gameGrid, timeBombColumnIndex, timeBombRowIndex);
         System.out.printf("--------<<<<<<<<<< Time Bomb explosion!! >>>>>>>>>>-------\n");
+
 
         // Reset sequence of turns
         GamePlay.singleTurnWithPrint(turnPlayer, otherPlayer, gameGrid);

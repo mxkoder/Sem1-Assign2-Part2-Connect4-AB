@@ -1,9 +1,5 @@
 package org.example.GameEnd;
 
-import org.example.Grid.BuildGrid;
-import org.example.Grid.PrintGrid;
-import org.example.Player.Player;
-
 public class WinConditions {
 
 
@@ -20,7 +16,7 @@ public class WinConditions {
         // loop through the rows in the game grid
         for (int j = 0; j < gameGrid.length; j++) {
 
-            // loop through the columns on the left side of the game grid
+            // loop through the columns starting on the left side of the game grid
             for (int i = 0; i <= 2; i++) {
 
                 // for valid counter numbers, checks if four identical counters are next to each other in a row
@@ -51,7 +47,7 @@ public class WinConditions {
         // loop through the columns in the game grid
         for (int i = 0; i < gameGrid[0].length ; i++) {
 
-            // loop through the rows in the top half of the game grid
+            // loop through the rows starting in the top half of the game grid
             for (int j = 0; j <= 2; j++) {
 
                 // for valid counter numbers, checks if four identical counters are next to each other in a column

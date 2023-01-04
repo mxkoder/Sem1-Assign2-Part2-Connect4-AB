@@ -17,7 +17,7 @@ public class GamePlay {
      * into GamePlay.playGamePrintResult</P>
      * @param player1 - Player object with associated counter and special moves
      * @param player2 - Player object with associated counter and special moves
-     * @param gameGrid - 2D integer game grid to store positions of the Connect4 counters
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
      */
     public static void choosePlayerPlayGame (Player player1, Player player2, int [][] gameGrid){
 
@@ -53,13 +53,13 @@ public class GamePlay {
     }
 
     /**
-     * Method to enable players 1 and 2 to play a game of Connect4, and print out the end game result
+     * Method to enable players 1 and 2 to play a game of Connect4 taking turns, and print out the end game result
      * <P>Players take turns to drop counters into the Connect4 for grid until one of the end game conditions is met.
      * If a player gets 4 of their counters in a horizontal, vertical, or diagonal row, they have won the game.
      * If neither player wins but the game grid if full, the game is a draw.</P>
      * @param player1 - Player object with associated counter and special moves
      * @param player2 - Player object with associated counter and special moves
-     * @param gameGrid - 2D integer game grid to store positions of the Connect4 counters
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
      */
     public static void playGamePrintResult (Player player1, Player player2, int [][] gameGrid) {
 
@@ -96,7 +96,7 @@ public class GamePlay {
      * as the Connect4 game progresses</p>
      * @param player1 - Player object with associated counter and special moves
      * @param player2 - Player object with associated counter and special moves
-     * @return - - 2D 'empty' integer game grid to store positions of the Connect4 counters
+     * @return int[][] - 2D 'empty' integer array game grid to store positions of the Connect4 counters
      */
     public static int [][] initialise6x6GridAndPrintWithPlayers (Player player1, Player player2) {
 
@@ -111,7 +111,7 @@ public class GamePlay {
      * <p>The game grid will be printed with the current status of player counters</p>
      * @param player1 - Player object with associated counter and special moves
      * @param player2 - Player object with associated counter and special moves
-     * @param gameGrid - 2D integer game grid to store positions of the Connect4 counters
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
      */
     public static void printPlayersAndGrid (Player player1, Player player2, int [][] gameGrid){
 

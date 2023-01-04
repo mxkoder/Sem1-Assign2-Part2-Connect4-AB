@@ -3,9 +3,14 @@ package org.example.Counters;
 public class Counter {
 
     private int counterNumber;
-
     private Character counterSymbol;
 
+    /**
+     * Counter object and associated methods
+     * <p>Stores the counter symbol (X or O) and the integer value of the counter for the 2D gameGrid array</p>
+     * @param counterNumber integer - counter integer for 2D gameGrid array
+     * @param counterSymbol Character - used to display the counter in the gameGri when printed
+     */
     public Counter (int counterNumber, Character counterSymbol){
 
         this.counterNumber = counterNumber;

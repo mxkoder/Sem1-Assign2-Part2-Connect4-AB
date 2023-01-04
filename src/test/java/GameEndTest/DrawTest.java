@@ -1,13 +1,57 @@
 package GameEndTest;
 
 import org.example.GameEnd.Draw;
-import org.example.GameEnd.WinConditions;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class DrawTest {
 
+    @Test
+    void gameIsADrawTest () {
+
+        int[][] gameGrid1 = {
+                {1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1},
+                {1, 1, 1, 1, 1, 1}
+        };
+        assertEquals(false, Draw.gameIsADraw(gameGrid1));
+
+
+        int[][] gameGrid2 = {
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+        assertEquals(false, Draw.gameIsADraw(gameGrid2));
+
+
+        int[][] gameGrid3 = {
+                {1, 1, 2, 2, 1, 2},
+                {1, 2, 1, 1, 1, 2},
+                {1, 2, 2, 2, 1, 2},
+                {2, 2, 1, 2, 2, 1},
+                {1, 1, 2, 1, 1, 2},
+                {1, 2, 1, 2, 1, 2}
+        };
+        assertEquals(true, Draw.gameIsADraw(gameGrid3));
+
+        int[][] gameGrid4 = {
+                {1, 1, 1, 2, 1, 2},
+                {1, 2, 2, 2, 1, 2},
+                {2, 1, 2, 2, 1, 2},
+                {2, 2, 1, 1, 2, 1},
+                {1, 1, 1, 2, 2, 1},
+                {1, 2, 1, 2, 1, 2}
+        };
+        assertEquals(true, Draw.gameIsADraw(gameGrid4));
+    }
 
     @Test
     void gridIsFilled_FullGrid_Test () {

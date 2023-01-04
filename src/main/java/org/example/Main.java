@@ -1,6 +1,5 @@
 package org.example;
 
-
 import org.example.Counters.Counter;
 import org.example.GamePlay.GamePlay;
 import org.example.GamePlay.GameReplay;
@@ -9,16 +8,9 @@ import org.example.SpecialMoves.Blitz;
 import org.example.SpecialMoves.SpecialMove;
 import org.example.SpecialMoves.TimeBomb;
 
-import java.util.*;
-
-
 public class Main {
 
-
-
     public static void main(String[] args) {
-
-        //TODO - change hardcoded special move numbers to set methods / make an 'initialise player' method?s
 
         // Player and Counters setup
         Counter counter1X = Counter.counter1X();
@@ -39,8 +31,5 @@ public class Main {
         //Option to play the game again
         GameReplay.optionToPlayAgain(player1, player2);
 
-        //TODO - check game draw again
-
     }
-
 }
