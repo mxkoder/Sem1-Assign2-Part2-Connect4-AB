@@ -28,14 +28,14 @@ public class GamePlay {
                 "Please enter: \n" +
                 "1 - for Player1 \n" +
                 "2  - for Player2 \n" +
-                "First player: \n");
+                "First player:");
 
         while(!validInput){
             choice = ReadInput.readIntFromConsoleNoPrompt();
 
             switch(choice){
                 case 1:
-                    System.out.printf("You have chosen for player 1 to go first. \n");
+                    System.out.printf("\n You have chosen for player 1 to go first. \n");
                     GamePlay.playGamePrintResult(player1, player2, gameGrid);
                     validInput = true;
                     break;

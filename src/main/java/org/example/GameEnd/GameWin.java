@@ -6,8 +6,8 @@ import org.example.Player.Player;
 public class GameWin {
 
     /**
-     * Method to determine whether if a connect 4 game has been won.
-     * @param gameGrid - 2D integer array representing a connect 4 game grid
+     * Method to determine whether if a Connect 4 game has been won.
+     * @param gameGrid - 2D integer array representing a Connect 4 game grid
      * @return boolean - returns true if the game has been won with a row, column or diagonal of 4 matching counters, and false if it has not been won.
      */
     public static boolean haveWinner (int [][] gameGrid) {
@@ -28,11 +28,11 @@ public class GameWin {
     }
 
     /**
-     * Method to check if a player has won the game, and print a congratulations mesage if they have
+     * Method to check if a player has won the game, and print a congratulations message if they have
      * <p> Uses winningCounterInteger to check if a player has won</p>
      * @param player1 - Player object with associated counter and special moves
      * @param player2 - Player object with associated counter and special moves
-     * @param gameGrid - 2D integer array representing a connect 4 game grid
+     * @param gameGrid - 2D integer array representing a Connect 4 game grid
      */
     public static void printWinnerIfGameWon (Player player1, Player player2, int [][] gameGrid ) {
 
@@ -51,7 +51,7 @@ public class GameWin {
      * Method to print the game grid and then a message to the winning player
      * @param winningPlayer - Winning player object with associated counter and special moves
      * @param otherPlayer - Player object with associated counter and special moves
-     * @param gameGrid - 2D integer array representing a connect 4 game grid
+     * @param gameGrid - 2D integer array representing a Connect 4 game grid
      */
     public static void winningPlayerMessage (Player winningPlayer, Player otherPlayer, int[][] gameGrid) {
 
@@ -62,7 +62,7 @@ public class GameWin {
 
     /**
      * Method to identify the counter that has won the game, or return a '-1' if there is no winner
-     * @param gameGrid - 2D integer array representing a connect 4 game grid
+     * @param gameGrid - 2D integer array representing a Connect 4 game grid
      * @return integer - Returns the integer value of the winning counter, or a '-1' if there is no winner
      */
     public static int winningCounterInteger ( int[][] gameGrid) {

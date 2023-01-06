@@ -99,5 +99,4 @@ public class BuildGridTest {
             assertEquals(-1, grid3[100][100]);
         });
     }
-
 }

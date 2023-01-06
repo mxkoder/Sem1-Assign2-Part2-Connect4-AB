@@ -70,7 +70,7 @@ public class ReadInput {
                 return number;
             }
 
-            System.out.printf("%s %d and %d.\n", promptMessage, rangeMin, rangeMax);
+            System.out.printf("%s %d and %d:", promptMessage, rangeMin, rangeMax);
         }
     }
 
@@ -81,7 +81,7 @@ public class ReadInput {
                 return true;
             }
 
-            System.out.printf("%s %d and %d.\n", promptMessage, rangeMin, rangeMax);
+            System.out.printf("%s %d and %d:", promptMessage, rangeMin, rangeMax);
             return false;
 
     }

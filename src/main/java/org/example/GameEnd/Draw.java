@@ -42,20 +42,19 @@ public class Draw {
      */
     public static boolean gridIsFilled (int[][] gameGrid) {
 
-        boolean gridIsFilled = true;
-
         for(int i = 0; i < gameGrid[0].length; i++)
         {
             for(int j = 0; j< gameGrid.length; j++)
             {
+
+                //Cells with a '-1' value are empty and do not contain a player counter
                 if(gameGrid[j][i] == -1) {
 
-                    //Cells with a '-1' value are empty and do not contain a player counter
-                    gridIsFilled = false;
+                    return false;
                 }
             }
         }
 
-        return gridIsFilled;
+        return true;
     }
 }

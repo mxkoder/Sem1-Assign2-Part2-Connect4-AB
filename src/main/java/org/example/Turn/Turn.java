@@ -15,36 +15,6 @@ public class Turn {
     //TODO - add java doc, add tests where can
     private static Scanner stdin = new Scanner(System.in);
 
-    public static void main(String[] args) {
-
-        Counter counter1X = Counter.counter1X();
-        Counter counter2O = Counter.counter2O();
-
-        SpecialMove blitz = Blitz.blitzInitialise();
-        SpecialMove timeBomb = TimeBomb.timeBombInitialise();
-
-        Player player1 = new Player( counter1X, blitz, timeBomb);
-        Player player2 = new Player(counter2O, blitz, timeBomb);
-
-
-
-        int[][] gameGrid = {
-                {-1, -1, -1, 1, -1, -1},
-                {-1, -1, -1, -1, -1, -1},
-                {-1, -1, -1, -1, -1, -1},
-                {-1, 2, 2, 2, 2, 1},
-                {-1, -1, -1, -1, -1, -1},
-                {1, 1, 1, 1, 1, 1}
-        };
-
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-        interpretPlayerCommand(player1, player2, gameGrid);
-
-        System.out.printf("after move \n");
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-    }
-
     //TODO - below has been refactored-  check tests valid, check method calls
 
     public static void interpretPlayerCommand (Player turnPlayer, Player otherPlayer, int[][] gameGrid) {
@@ -52,26 +22,24 @@ public class Turn {
         playerSelectColumnPrompt(turnPlayer);
         String playerInput = stdin.nextLine();
 
-        // Process for column index commands
-        if(playerInput.matches("^[0-9]*$")) {
 
-            if(playerInput == "") {
-                errorMessageInvalidCommand();
-                interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
+        if(playerInput == "") {
+            errorMessageInvalidCommand();
+            interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
+
+        // Process for column index commands
+        } else if(playerInput.matches("^[0-9]*$")) {
+            int selectedColumnIndex = Integer.parseInt(playerInput);
+
+            boolean indexIsValid = checkColumnIndex(gameGrid, selectedColumnIndex, turnPlayer, otherPlayer);
+
+            // Checking if integer input by player is a valid column index
+            if (indexIsValid) {
+                playerTakesNormalTurn(turnPlayer, otherPlayer, gameGrid, selectedColumnIndex);
 
             } else {
-                int selectedColumnIndex = Integer.parseInt(playerInput);
-
-                boolean indexIsValid = checkColumnIndex(gameGrid, selectedColumnIndex, turnPlayer, otherPlayer);
-
-                // Checking if integer input by player is a valid column index
-                if (indexIsValid) {
-                    playerTakesNormalTurn(turnPlayer, gameGrid, selectedColumnIndex);
-
-                } else {
-                    errorMessageInvalidCommand();
-                    interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
-                }
+                errorMessageInvalidCommand();
+                interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
             }
 
         // Process for Special Move letter commands
@@ -88,20 +56,20 @@ public class Turn {
 
 
     //TODO add java doc method explanations
-    public static void playerTakesNormalTurn (Player player, int[][] gameGrid, int selectedColumnIndex){
+    public static void playerTakesNormalTurn (Player turnPlayer, Player otherPlayer, int[][] gameGrid, int selectedColumnIndex){
 
-        boolean turnTaken = false;
+        boolean turnTaken;
 
         int[] selectedColumn = gameGrid[selectedColumnIndex];
 
-        int playerCounterNumber = player.getCounter().getCounterNumber();
+        int playerCounterNumber = turnPlayer.getCounter().getCounterNumber();
 
         turnTaken = TurnMechanism.takeTurnDropCounter(playerCounterNumber, selectedColumn);
 
         if(!turnTaken){
 
             errorMessageInvalidCommand();
-            playerTakesNormalTurn(player, gameGrid, selectedColumnIndex);
+            interpretPlayerCommand(turnPlayer, otherPlayer, gameGrid);
         }
     }
 
@@ -135,7 +103,7 @@ public class Turn {
 
     public static void errorMessageInvalidCommand () {
 
-        System.out.printf("Please enter a either a valid column index number or a single letter command for a special move. \n");
+        System.out.printf("Please enter a either a valid column index number or a single letter command for a special move. \n\n");
     }
 
 

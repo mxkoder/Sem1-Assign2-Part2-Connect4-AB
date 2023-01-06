@@ -1,16 +1,16 @@
 package org.example.SpecialMoves;
 
-import org.example.Counters.Counter;
 import org.example.GamePlay.GamePlay;
-import org.example.Grid.BuildGrid;
-import org.example.Grid.PrintGrid;
 import org.example.Player.Player;
-import org.example.Turn.Turn;
 import org.example.Turn.TurnMechanism;
 import org.example.UserInputs.ReadInput;
 
 public class TimeBomb {
 
+    public static SpecialMove timeBombInitialise () {
+        SpecialMove timeBomb = new SpecialMove(10,'*',1,"T");
+        return timeBomb;
+    }
 
     //TODO test - on blitz move mechanics
     //TODO write java doc & tests
@@ -27,11 +27,7 @@ public class TimeBomb {
 
             // Only let a player use their special move if they have enough special moves left
             if (haveMovesAvailable) {
-                int selectedColumn = timeBombSelectColumnPrompt(gameGrid);
-
-                System.out.printf("You have successfully set a Time Bomb in column %d.\n" +
-                        "It will go off after your opponent has taken two more turns.\n", selectedColumn);
-                timeBombTurnSequence(turnPlayer, otherPlayer, gameGrid, selectedColumn);
+                timeBombTurnSequence(turnPlayer, otherPlayer, gameGrid);
 
             } else {
                 System.out.printf("You have already used up your Time Bomb move. Please take your turn with a valid column index or special move with moves remaining.\n\n");
@@ -45,25 +41,11 @@ public class TimeBomb {
         }
     }
 
-    public static int timeBombSelectColumnPrompt (int[][] gameGrid){
-
-        int minColumnNumber = 0;
-        int maxColumnNumber = gameGrid.length - 1;
-
-        System.out.printf("Time Bomb: please select Column:");
-        int selectedColumn = ReadInput.readIntFromConsoleInRangeWithPrompt(
-                minColumnNumber,
-                maxColumnNumber,
-                "Please select a valid column for Time Bomb by entering an integer between");
-
-        return selectedColumn;
-    }
-
-    public static void timeBombTurnSequence (Player turnPlayer, Player otherPlayer, int[][] gameGrid, int timeBombColumnIndex) {
+    public static void timeBombTurnSequence (Player turnPlayer, Player otherPlayer, int[][] gameGrid) {
 
         // ----------Turn to drop the time bomb (continued) ------------------------
-        timeBombDropCounter(turnPlayer, gameGrid, timeBombColumnIndex);
-        System.out.printf("\n");
+        int timeBombColumnIndex = timeBombDropCounter(turnPlayer, gameGrid);
+        System.out.printf("You have successfully set a Time Bomb, it will go off after your opponent has taken two more turns. \n\n");
 
         // Get row index of time bomb counter placement
         int[] selectedColumn = gameGrid[timeBombColumnIndex];
@@ -89,21 +71,42 @@ public class TimeBomb {
         GamePlay.singleTurnWithPrint(turnPlayer, otherPlayer, gameGrid);
      }
 
-    public static void timeBombDropCounter (Player turnPlayer, int[][] gameGrid, int timeBombColumnIndex) {
+    public static int timeBombDropCounter (Player turnPlayer, int[][] gameGrid) {
+        int timeBombColumnIndex;
+        int[] selectedColumn;
+        int timeBombCounterNumber;
+        boolean validColumn;
 
-        boolean validColumn = false;
+        do {
 
-        int[] selectedColumn = gameGrid[timeBombColumnIndex];
+            timeBombColumnIndex = timeBombSelectColumnPrompt(gameGrid);
 
-        int timeBombCounterNumber = turnPlayer.getTimeBomb().getMoveNumberInGrid();
+            selectedColumn = gameGrid[timeBombColumnIndex];
+            timeBombCounterNumber = turnPlayer.getTimeBomb().getNumberInGrid();
+            validColumn = TurnMechanism.takeTurnDropCounter(timeBombCounterNumber, selectedColumn);
 
-        validColumn = TurnMechanism.takeTurnDropCounter(timeBombCounterNumber, selectedColumn);
+            if (!validColumn) {
+                System.out.printf("Please select another column to use your Time Bomb special move. \n");
 
-        if(!validColumn) {
-            System.out.printf("This column is full. Please select another column to use your Time Bomb special move. \n");
-            //TODO add method to take them to top of time bomb dialogue
-        }
+            }
 
+        } while (!validColumn) ;
+
+        return timeBombColumnIndex;
+    }
+
+    public static int timeBombSelectColumnPrompt (int[][] gameGrid){
+
+        int minColumnNumber = 0;
+        int maxColumnNumber = gameGrid.length - 1;
+
+        System.out.printf("Time Bomb: please select Column:");
+        int selectedColumn = ReadInput.readIntFromConsoleInRangeWithPrompt(
+                minColumnNumber,
+                maxColumnNumber,
+                "Please select a valid column for Time Bomb by entering an integer between");
+
+        return selectedColumn;
     }
 
     public static int numberEmptySpacesInGrid (int[][] gameGrid) {
@@ -181,11 +184,4 @@ public class TimeBomb {
         }
 
     }
-
-
-    public static SpecialMove timeBombInitialise () {
-        SpecialMove timeBomb = new SpecialMove(10,'*',1,"T");
-        return timeBomb;
-    }
-
 }

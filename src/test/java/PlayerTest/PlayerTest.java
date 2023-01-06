@@ -8,7 +8,7 @@ import org.example.SpecialMoves.TimeBomb;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 
 
 public class PlayerTest {
@@ -40,16 +40,16 @@ public class PlayerTest {
         SpecialMove timeBomb = TimeBomb.timeBombInitialise();
 
         Player player3 = new Player(new Counter(3, 'x'), blitz, timeBomb);
-        assertEquals(null, player3.getCounter());
+        assertNull(player3.getCounter());
 
         Player player4 = new Player(new Counter(0, 'x'), blitz, timeBomb);
-        assertEquals(null, player4.getCounter());
+        assertNull(player4.getCounter());
 
         Player player5 = new Player(new Counter(10, 'x'), blitz, timeBomb);
-        assertEquals(null, player5.getCounter());
+        assertNull(player5.getCounter());
 
         Player player6 = new Player(new Counter(100, 'x'), blitz, timeBomb);
-        assertEquals(null, player6.getCounter());
+        assertNull(player6.getCounter());
     }
 
 }

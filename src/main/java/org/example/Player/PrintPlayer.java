@@ -5,7 +5,7 @@ import org.example.Grid.PrintGrid;
 public class PrintPlayer {
 
     /**
-     * Method to print two players to the console
+     * Method to print two players to the console showing their associated counters
      * <p>Will print each player in the format 'Player [player number] [player counter symbol] [new line]</p>
      * @param player1 - Player object which is to be printed
      * @param player2 - Player object which is to be printed
@@ -16,9 +16,8 @@ public class PrintPlayer {
         printSinglePlayer(player2);
     }
 
-
     /**
-     * Method to print a single player to the console
+     * Method to print a single player to the console with their counter symbol
      * <p>Will print in the format 'Player [player number] [player counter symbol] [new line]</p>
      * @param playerToPrint - Player object which is to be printed
      */

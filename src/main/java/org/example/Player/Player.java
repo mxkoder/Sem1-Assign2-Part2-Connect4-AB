@@ -5,14 +5,13 @@ import org.example.SpecialMoves.SpecialMove;
 
 public class Player {
 
-    //TODO - change java comments to reflect changes in blitz & time bomb
     private Counter counter;
     private SpecialMove blitz;
     private SpecialMove timeBomb;
 
     /**
-     * Player object to be used to initialise the two players for the connect 4 game
-     * @param counter Counter object - a Counter object with an associated number for the gird value and symbol
+     * Player object constructor to be used to initialise the two players for the Connect 4 game
+     * @param counter Counter object - a Counter object with an associated number and symbol for the game gird
      * @param blitz SpecialMove - blitz special move object
      * @param timeBomb SpecialMove - time bomb object
      */
@@ -47,7 +46,5 @@ public class Player {
     public void setTimeBomb (SpecialMove timeBomb) {
         this.timeBomb = timeBomb;
     }
-
-
 
 }

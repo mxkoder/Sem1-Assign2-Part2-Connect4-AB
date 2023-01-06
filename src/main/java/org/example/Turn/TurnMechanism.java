@@ -15,6 +15,7 @@ public class TurnMechanism {
     public static boolean takeTurnDropCounter (int counterInteger, int[] column){
 
         if(getTopColumnEmptyIndex(column) == -1){
+            System.out.printf("Error: This column is full. \n");
             return false;
         } else {
             column[getTopColumnEmptyIndex(column)] = counterInteger;

@@ -1,45 +1,28 @@
 package org.example.SpecialMoves;
 
-import org.example.Counters.Counter;
 import org.example.GamePlay.GamePlay;
 import org.example.Grid.BuildGrid;
-import org.example.Grid.PrintGrid;
 import org.example.Player.Player;
 import org.example.UserInputs.ReadInput;
 
 public class Blitz {
 
-    //TODO test - on blitz move mechanics
-    //TODO write java doc
-    public static void main(String[] args) {
-
-        // Player and Counters setup
-        Counter counter1X = Counter.counter1X();
-        Counter counter2O = Counter.counter2O();
-
-        SpecialMove blitz = Blitz.blitzInitialise();
-        SpecialMove timeBomb = TimeBomb.timeBombInitialise();
-
-        Player player1 = new Player( counter1X, blitz, timeBomb);
-        Player player2 = new Player(counter2O, blitz, timeBomb);
-
-        int[][] gameGrid = {
-                {-1, -1, -1, 1, -1, -1},
-                {-1, -1, -1, -1, -1, -1},
-                {-1, -1, -1, -1, -1, -1},
-                {-1, 2, 2, 2, 2, 1},
-                {-1, -1, -1, -1, -1, -1},
-                {1, 1, 1, 1, 1, 1}
-        };
-
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
-
-        blitzMoveDialogue(gameGrid, player1, player2);
-
-        System.out.printf("after blitz \n");
-        PrintGrid.printGridWithColumnHeadings(gameGrid);
+    /**
+     * Initialises a Blitz special move object with starting number of moves
+     * @return - Blitz special move object
+     */
+    public static SpecialMove blitzInitialise () {
+        SpecialMove blitz = new SpecialMove(-1,'-',1,"B");
+        return blitz;
     }
 
+    /**
+     * Method to let the player make a Blitz with prompt asking for the column to Blitz
+     * <p> The Blitz move will only be executed if the player has a Blitz move available </p>
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     * @param turnPlayer - Player object with associated counter and special moves
+     * @param otherPlayer - Player object with associated counter and special moves
+     */
     public static void blitzMoveDialogue (int[][] gameGrid, Player turnPlayer, Player otherPlayer) {
 
         boolean haveMovesAvailable = turnPlayer.getBlitz().useUp1Move();
@@ -47,7 +30,7 @@ public class Blitz {
         // Only let a player use their special move if they have enough special moves left
         if(haveMovesAvailable) {
             int selectedColumn = blitzSelectColumnPrompt(gameGrid);
-            blitzMoveMechanics(gameGrid, selectedColumn, turnPlayer, otherPlayer);
+            blitzMoveMechanics(gameGrid, selectedColumn);
             System.out.printf("You have successfully Blitzed column %d.\n", selectedColumn);
 
         } else {
@@ -55,10 +38,14 @@ public class Blitz {
             GamePlay.playGamePrintResult(turnPlayer, otherPlayer, gameGrid);
 
         }
-
     }
 
-    //TODO combine with timebomb command?
+    /**
+     * Method to prompt the player to select a column in the game grid to use their Blitz move on.
+     * <p>Player can only choose a valid column index and will be prompted to re enter their value otherwise</p>
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     * @return integer - Column index to Blitz selected by player
+     */
     public static int blitzSelectColumnPrompt (int[][] gameGrid){
 
         int minColumnNumber = 0;
@@ -73,19 +60,19 @@ public class Blitz {
         return selectedColumn;
     }
 
-    public static void blitzMoveMechanics ( int[][] gameGrid, int blitzColumnIndex, Player turnPlayer, Player otherPlayer) {
+    /**
+     * Method to execute the mechanics of a Blitz move and clear the selected column in a game grid
+     * <p>All values in the column to Blitz will be replaced with '-1', which represents and empty grid cell</p>
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     * @param blitzColumnIndex - Column index to Blitz selected by player
+     */
+    public static void blitzMoveMechanics ( int[][] gameGrid, int blitzColumnIndex) {
 
         int columnHeight = gameGrid[0].length;
 
         gameGrid[blitzColumnIndex] = BuildGrid.buildUnpopulatedStartColumn(columnHeight);
 
     }
-
-    public static SpecialMove blitzInitialise () {
-        SpecialMove blitz = new SpecialMove(-1,'-',1,"B");
-        return blitz;
-    }
-
 }
 
 
