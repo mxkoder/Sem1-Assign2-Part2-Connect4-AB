@@ -1,7 +1,9 @@
 package org.example.Player;
 
 import org.example.Counters.Counter;
+import org.example.SpecialMoves.Blitz;
 import org.example.SpecialMoves.SpecialMove;
+import org.example.SpecialMoves.TimeBomb;
 
 public class Player {
 
@@ -11,17 +13,15 @@ public class Player {
 
     /**
      * Player object constructor to be used to initialise the two players for the Connect 4 game
-     * @param counter Counter object - a Counter object with an associated number and symbol for the game gird
-     * @param blitz SpecialMove - blitz special move object
-     * @param timeBomb SpecialMove - time bomb object
+     * @param counter Counter object - a Counter object with an associated number and symbol for the game grid
      */
-    public Player(Counter counter, SpecialMove blitz, SpecialMove timeBomb){
+    public Player(Counter counter){
 
         if( counter.getCounterNumber() == 1 | counter.getCounterNumber() == 2) {
 
             this.counter = counter;
-            this.blitz = blitz;
-            this.timeBomb = timeBomb;
+            this.blitz = Blitz.blitzInitialise();
+            this.timeBomb = TimeBomb.timeBombInitialise();
         } else {
             System.out.printf("Please choose a valid counter number of either 1 (X) or 2 (O) \n");
         }

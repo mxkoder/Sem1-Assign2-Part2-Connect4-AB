@@ -16,11 +16,8 @@ public class Main {
         Counter counter1X = Counter.counter1X();
         Counter counter2O = Counter.counter2O();
 
-        SpecialMove blitz = Blitz.blitzInitialise();
-        SpecialMove timeBomb = TimeBomb.timeBombInitialise();
-
-        Player player1 = new Player( counter1X, blitz, timeBomb);
-        Player player2 = new Player(counter2O, blitz, timeBomb);
+        Player player1 = new Player(counter1X);
+        Player player2 = new Player(counter2O);
 
         //Initialising game grid
         int [][] gameGrid = GamePlay.initialise6x6GridAndPrintWithPlayers(player1, player2);

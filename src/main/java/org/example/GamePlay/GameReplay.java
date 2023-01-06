@@ -77,11 +77,8 @@ public class GameReplay {
      */
     public static void resetPlayer (Player player) {
 
-        SpecialMove blitz = Blitz.blitzInitialise();
-        SpecialMove timeBomb = TimeBomb.timeBombInitialise();
-
-        player.setBlitz(blitz);
-        player.setTimeBomb(timeBomb);
+        player.setBlitz(Blitz.blitzInitialise());
+        player.setTimeBomb(TimeBomb.timeBombInitialise());
     }
 
 }

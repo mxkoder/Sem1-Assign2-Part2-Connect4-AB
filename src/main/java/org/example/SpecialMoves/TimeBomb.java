@@ -8,59 +8,6 @@ import org.example.UserInputs.ReadInput;
 
 public class TimeBomb {
 
-    public static void main(String[] args) {
-
-        // Player and Counters setup
-        Counter counter1X = Counter.counter1X();
-        Counter counter2O = Counter.counter2O();
-
-        SpecialMove blitz = Blitz.blitzInitialise();
-        SpecialMove timeBomb = TimeBomb.timeBombInitialise();
-
-        Player player1 = new Player(counter1X, blitz, timeBomb);
-        Player player2 = new Player(counter2O, blitz, timeBomb);
-
-        int[][] gameGrid = {
-                {-1, -1, -1, -1, -1, -1},
-                {-1, -1, 1, 1, 1, 1},
-                {-1, -1, -1, 1, 2, 1},
-                {-1, -1, 1, 1, 1, 1},
-                {-1, -1, -1, -1, -1, -1},
-                {-1, -1, -1, -1, -1, -1}
-        };
-
-
-        // ----------Turn to drop the time bomb (continued) ------------------------
-        int timeBombColumnIndex = timeBombDropCounter(player1, gameGrid);
-        System.out.printf("You have successfully set a Time Bomb, it will go off after your opponent has taken two more turns. \n\n");
-
-        // Get row index of time bomb counter placement
-        int[] selectedColumn = gameGrid[timeBombColumnIndex];
-        int timeBombRowIndex = TurnMechanism.getTopColumnEmptyIndex(selectedColumn) + 1;
-
-        System.out.printf("time bomb exp counter row is %s\n", timeBombRowIndex);
-
-
-        // ----------Other player, 1st turn during time bomb ------------------------
-        GamePlay.singleTurnWithPrint(player2, player1, gameGrid);
-
-        // ----------Turn player, 1st turn during time bomb ------------------------
-        GamePlay.singleTurnWithPrint(player1, player2, gameGrid);
-
-        // ----------Other player, 2nd turn during time bomb ------------------------
-        GamePlay.singleTurnWithPrint(player2, player1, gameGrid);
-
-        GamePlay.printPlayersAndGrid(player1, player2, gameGrid);
-
-        // ----------Time Bomb explodes ------------------------
-        timeBombExplosion(gameGrid, timeBombColumnIndex, timeBombRowIndex);
-        System.out.printf("--------<<<<<<<<<< Time Bomb explosion!! >>>>>>>>>>-------\n");
-
-
-        // Reset sequence of turns
-        GamePlay.singleTurnWithPrint(player1, player2, gameGrid);
-    }
-
     public static SpecialMove timeBombInitialise () {
         SpecialMove timeBomb = new SpecialMove(10,'*',1,"T");
         return timeBomb;
@@ -115,6 +62,7 @@ public class TimeBomb {
         // ----------Other player, 2nd turn during time bomb ------------------------
         GamePlay.singleTurnWithPrint(otherPlayer, turnPlayer, gameGrid);
 
+        GamePlay.printPlayersAndGrid(turnPlayer, otherPlayer, gameGrid);
 
         // ----------Time Bomb explodes ------------------------
         timeBombExplosion(gameGrid, timeBombColumnIndex, timeBombRowIndex);
