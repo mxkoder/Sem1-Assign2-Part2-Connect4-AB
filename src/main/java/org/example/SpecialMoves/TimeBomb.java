@@ -1,11 +1,65 @@
 package org.example.SpecialMoves;
 
+import org.example.Counters.Counter;
 import org.example.GamePlay.GamePlay;
 import org.example.Player.Player;
 import org.example.Turn.TurnMechanism;
 import org.example.UserInputs.ReadInput;
 
 public class TimeBomb {
+
+    public static void main(String[] args) {
+
+        // Player and Counters setup
+        Counter counter1X = Counter.counter1X();
+        Counter counter2O = Counter.counter2O();
+
+        SpecialMove blitz = Blitz.blitzInitialise();
+        SpecialMove timeBomb = TimeBomb.timeBombInitialise();
+
+        Player player1 = new Player(counter1X, blitz, timeBomb);
+        Player player2 = new Player(counter2O, blitz, timeBomb);
+
+        int[][] gameGrid = {
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, 1, 1, 1, 1},
+                {-1, -1, -1, 1, 2, 1},
+                {-1, -1, 1, 1, 1, 1},
+                {-1, -1, -1, -1, -1, -1},
+                {-1, -1, -1, -1, -1, -1}
+        };
+
+
+        // ----------Turn to drop the time bomb (continued) ------------------------
+        int timeBombColumnIndex = timeBombDropCounter(player1, gameGrid);
+        System.out.printf("You have successfully set a Time Bomb, it will go off after your opponent has taken two more turns. \n\n");
+
+        // Get row index of time bomb counter placement
+        int[] selectedColumn = gameGrid[timeBombColumnIndex];
+        int timeBombRowIndex = TurnMechanism.getTopColumnEmptyIndex(selectedColumn) + 1;
+
+        System.out.printf("time bomb exp counter row is %s\n", timeBombRowIndex);
+
+
+        // ----------Other player, 1st turn during time bomb ------------------------
+        GamePlay.singleTurnWithPrint(player2, player1, gameGrid);
+
+        // ----------Turn player, 1st turn during time bomb ------------------------
+        GamePlay.singleTurnWithPrint(player1, player2, gameGrid);
+
+        // ----------Other player, 2nd turn during time bomb ------------------------
+        GamePlay.singleTurnWithPrint(player2, player1, gameGrid);
+
+        GamePlay.printPlayersAndGrid(player1, player2, gameGrid);
+
+        // ----------Time Bomb explodes ------------------------
+        timeBombExplosion(gameGrid, timeBombColumnIndex, timeBombRowIndex);
+        System.out.printf("--------<<<<<<<<<< Time Bomb explosion!! >>>>>>>>>>-------\n");
+
+
+        // Reset sequence of turns
+        GamePlay.singleTurnWithPrint(player1, player2, gameGrid);
+    }
 
     public static SpecialMove timeBombInitialise () {
         SpecialMove timeBomb = new SpecialMove(10,'*',1,"T");
@@ -100,7 +154,7 @@ public class TimeBomb {
         int minColumnNumber = 0;
         int maxColumnNumber = gameGrid.length - 1;
 
-        System.out.printf("Time Bomb: please select Column:");
+        System.out.printf("Time Bomb - please select Column:");
         int selectedColumn = ReadInput.readIntFromConsoleInRangeWithPrompt(
                 minColumnNumber,
                 maxColumnNumber,
@@ -171,11 +225,21 @@ public class TimeBomb {
             for (int j = minRowIndex; j <= maxRowIndex; j++) {
 
                 // Clearing the counters to the side and diagonal to the time bomb
+                // special case for time bombs at the top of a game grid column
                 if (j <= 2) {
                     gameGrid[i][j] = -1;
 
+                } else if (j == 5) {
+                    // 'dropping' the counters down by 2 spaces from above the area cleared by the time bomb to fill the gap
+                    // special case for time bombs at the bottom of a game grid column
+                    gameGrid[i][j] = gameGrid[i][j -2];
+                    gameGrid[i][j -2] = -1;
+
+                    gameGrid[i][j -1] = gameGrid[i][j -3];
+                    gameGrid[i][j -3] = -1;
+
                 } else {
-                    // 'dropping' the counters down above the area cleared by the time bomb to fill the gap
+                    // 'dropping' the counters down by 3 spaces from above the area cleared by the time bomb to fill the gap
                     gameGrid[i][j] = gameGrid[i][j -3];
                     gameGrid[i][j -3] = -1;
                 }
