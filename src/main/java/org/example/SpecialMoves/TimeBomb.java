@@ -167,29 +167,27 @@ public class TimeBomb {
             maxRowIndex = timeBombRowIndex +1;
         }
 
-        // looping through the game grid to clear the values when the time bomb 'explodes'
+        // looping through the game grid to clear the values when the time bomb 'explodes' and drop the counters above into the cleared space
         for (int i = minColumnIndex; i <= maxColumnIndex ; i++) {
 
             for (int j = minRowIndex; j <= maxRowIndex; j++) {
 
-                // Clearing the counters to the side and diagonal to the time bomb
-                // special case for time bombs at the top of a game grid column
+                // special case for time bomb placement in the top of a game grid column
                 if (j <= 2) {
                     gameGrid[i][j] = -1;
 
-                } else if (j == 5) {
-                    // 'dropping' the counters down by 2 spaces from above the area cleared by the time bomb to fill the gap
-                    // special case for time bombs at the bottom of a game grid column
-                    gameGrid[i][j] = gameGrid[i][j -2];
-                    gameGrid[i][j -2] = -1;
-
-                    gameGrid[i][j -1] = gameGrid[i][j -3];
-                    gameGrid[i][j -3] = -1;
-
                 } else {
-                    // 'dropping' the counters down by 3 spaces from above the area cleared by the time bomb to fill the gap
-                    gameGrid[i][j] = gameGrid[i][j -3];
-                    gameGrid[i][j -3] = -1;
+                    // special case for time bombs at the bottom of a game grid column
+                    // 'dropping' the counters down by 2 spaces from above the area cleared by the time bomb to fill the gap
+                    if (timeBombRowIndex ==5) {
+                        gameGrid[i][j] = gameGrid[i][j -2];
+                        gameGrid[i][j -2] = -1;
+
+                    } else {
+                        // 'dropping' the counters down by 3 spaces from above the area cleared by the time bomb to fill the gap
+                        gameGrid[i][j] = gameGrid[i][j - 3];
+                        gameGrid[i][j - 3] = -1;
+                    }
                 }
 
             }
