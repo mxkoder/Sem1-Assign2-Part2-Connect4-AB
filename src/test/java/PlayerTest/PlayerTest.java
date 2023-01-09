@@ -21,13 +21,13 @@ public class PlayerTest {
         SpecialMove blitz = Blitz.blitzInitialise();
         SpecialMove timeBomb = TimeBomb.timeBombInitialise();
 
-        Player player1 = new Player(counter1X, blitz, timeBomb);
+        Player player1 = new Player(counter1X);
         assertEquals(1, player1.getCounter().getCounterNumber());
         assertEquals(1, player1.getBlitz().getNumberOfMoves());
         assertEquals(1, player1.getTimeBomb().getNumberOfMoves());
 
         Counter counter2O = Counter.counter2O();
-        Player player2 = new Player(counter2O, blitz, timeBomb);
+        Player player2 = new Player(counter2O);
         assertEquals(2, player2.getCounter().getCounterNumber());
         assertEquals(1, player2.getBlitz().getNumberOfMoves());
         assertEquals(1, player2.getBlitz().getNumberOfMoves());
@@ -39,16 +39,16 @@ public class PlayerTest {
         SpecialMove blitz = Blitz.blitzInitialise();
         SpecialMove timeBomb = TimeBomb.timeBombInitialise();
 
-        Player player3 = new Player(new Counter(3, 'x'), blitz, timeBomb);
+        Player player3 = new Player(new Counter(3, 'x'));
         assertNull(player3.getCounter());
 
-        Player player4 = new Player(new Counter(0, 'x'), blitz, timeBomb);
+        Player player4 = new Player(new Counter(0, 'x'));
         assertNull(player4.getCounter());
 
-        Player player5 = new Player(new Counter(10, 'x'), blitz, timeBomb);
+        Player player5 = new Player(new Counter(10, 'x'));
         assertNull(player5.getCounter());
 
-        Player player6 = new Player(new Counter(100, 'x'), blitz, timeBomb);
+        Player player6 = new Player(new Counter(100, 'x'));
         assertNull(player6.getCounter());
     }
 

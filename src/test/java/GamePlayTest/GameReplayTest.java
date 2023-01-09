@@ -20,7 +20,7 @@ public class GameReplayTest {
         SpecialMove blitz = Blitz.blitzInitialise();
         SpecialMove timeBomb = TimeBomb.timeBombInitialise();
 
-        Player player = new Player( counter1X, blitz, timeBomb);
+        Player player = new Player( counter1X);
 
 
         player.getTimeBomb().useUp1Move();
@@ -39,7 +39,7 @@ public class GameReplayTest {
         SpecialMove blitz = Blitz.blitzInitialise();
         SpecialMove timeBomb = TimeBomb.timeBombInitialise();
 
-        Player player = new Player( counter1X, blitz, timeBomb);
+        Player player = new Player( counter1X);
 
 
         player.getBlitz().useUp1Move();

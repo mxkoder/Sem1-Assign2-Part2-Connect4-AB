@@ -1,6 +1,5 @@
 package org.example.SpecialMoves;
 
-import org.example.Counters.Counter;
 import org.example.GamePlay.GamePlay;
 import org.example.Player.Player;
 import org.example.Turn.TurnMechanism;
@@ -13,10 +12,8 @@ public class TimeBomb {
         return timeBomb;
     }
 
-    //TODO test - on blitz move mechanics
-    //TODO write java doc & tests
+    //TODO write java doc
 
-    //TODO - only do time bomb if have more than x spaces left in grid
     public static void timeBombMoveDialogue (Player turnPlayer, Player otherPlayer, int[][] gameGrid) {
 
         int numberOfEmptySpacesInGrid = numberEmptySpacesInGrid(gameGrid);
@@ -143,7 +140,7 @@ public class TimeBomb {
             minColumnIndex = 0;
             maxColumnIndex = 1;
 
-        } else if (timeBombColumnIndex == (gameGrid.length -1) ) {
+        } else if (timeBombColumnIndex == (gameGrid.length - 1)) {
             minColumnIndex = gameGrid.length - 2;
             maxColumnIndex = gameGrid.length - 1;
 
@@ -163,27 +160,40 @@ public class TimeBomb {
 
         } else {
 
-            minRowIndex = timeBombRowIndex -1;
-            maxRowIndex = timeBombRowIndex +1;
+            minRowIndex = timeBombRowIndex - 1;
+            maxRowIndex = timeBombRowIndex + 1;
         }
 
-        // looping through the game grid to clear the values when the time bomb 'explodes' and drop the counters above into the cleared space
-        for (int i = minColumnIndex; i <= maxColumnIndex ; i++) {
+        //----------special case for time bombs at the bottom row of the game grid--------------------------------------------------
+        // 'dropping' the counters down by 2 spaces from above the area cleared by the time bomb to fill the gap
+        if (timeBombRowIndex == gameGrid[0].length - 1) {
 
-            for (int j = minRowIndex; j <= maxRowIndex; j++) {
+            for (int i = minColumnIndex; i <= maxColumnIndex; i++) {
+                for (int j = gameGrid[0].length - 1; j >= 0; j--) {
 
-                // special case for time bomb placement in the top of a game grid column
-                if (j <= 2) {
-                    gameGrid[i][j] = -1;
+                    // Each row apart from the top 2 rows will 'drop' 2 rows down, with the bottom rows cleared by the time bomb explosion
+                    if ( j >= 2) {
+                        gameGrid[i][j] = gameGrid[i][j - 2];
+                    // Top two rows will be empty with a '-1' value
+                    } else {
+                        gameGrid[i][j] = -1;
+                    }
+                }
+            }
 
-                } else {
-                    // special case for time bombs at the bottom of a game grid column
-                    // 'dropping' the counters down by 2 spaces from above the area cleared by the time bomb to fill the gap
-                    if (timeBombRowIndex ==5) {
-                        gameGrid[i][j] = gameGrid[i][j -2];
-                        gameGrid[i][j -2] = -1;
+        } else {
+
+            // looping through the game grid to clear the values when the time bomb 'explodes' and drop the counters above into the cleared space
+            for (int i = minColumnIndex; i <= maxColumnIndex; i++) {
+
+                for (int j = minRowIndex; j <= maxRowIndex; j++) {
+
+                    //--------------------Special case for time bomb placement in the top of rows of the game grid--------------------------
+                    if (j <= 2) {
+                        gameGrid[i][j] = -1;
 
                     } else {
+                        // ---------------------Standard case for time bomb placed in the middle rows of the game grid -----------------------
                         // 'dropping' the counters down by 3 spaces from above the area cleared by the time bomb to fill the gap
                         gameGrid[i][j] = gameGrid[i][j - 3];
                         gameGrid[i][j - 3] = -1;
@@ -191,7 +201,7 @@ public class TimeBomb {
                 }
 
             }
-        }
 
+        }
     }
 }
