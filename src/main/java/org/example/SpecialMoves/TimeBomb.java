@@ -12,8 +12,14 @@ public class TimeBomb {
         return timeBomb;
     }
 
-    //TODO write java doc
-
+    /**
+     * Method to initiate the Time Bomb special move
+     * <p>The time bomb will only be started if there are enough empty spaces left in the grid for the
+     * time bomb to go off</p>
+     * @param turnPlayer - Player object whose current turn it is with associated counter and special moves
+     * @param otherPlayer -Player object with associated counter and special moves
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     */
     public static void timeBombMoveDialogue (Player turnPlayer, Player otherPlayer, int[][] gameGrid) {
 
         int numberOfEmptySpacesInGrid = numberEmptySpacesInGrid(gameGrid);
@@ -39,6 +45,13 @@ public class TimeBomb {
         }
     }
 
+    /**
+     * Method to implement the time bomb special move
+     * <p>The Time Bomb will explode after the other player has had two more turns, clearing all counters directly adjacent and diagonal to it</p>
+     * @param turnPlayer - Player object whose current turn it is with associated counter and special moves
+     * @param otherPlayer -Player object with associated counter and special moves
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     */
     public static void timeBombTurnSequence (Player turnPlayer, Player otherPlayer, int[][] gameGrid) {
 
         // ----------Turn to drop the time bomb (continued) ------------------------
@@ -70,11 +83,19 @@ public class TimeBomb {
         GamePlay.singleTurnWithPrint(turnPlayer, otherPlayer, gameGrid);
      }
 
+    /**
+     * Method to check the column selected by the player to drop a time counter into is not full
+     * <p>The player is prompted to enter an integer for the game grid column they would like to drop their counter into</p>
+     * <p>If they choose a full column they will be prompted to choose another column.</p>
+     * @param turnPlayer - Player object whose current turn it is with associated counter and special moves
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     * @return integer - Column index of the game grid column the time bomb counter was placed into
+     */
     public static int timeBombDropCounter (Player turnPlayer, int[][] gameGrid) {
         int timeBombColumnIndex;
         int[] selectedColumn;
         int timeBombCounterNumber;
-        boolean validColumn;
+        boolean columnHasSpace;
 
         do {
 
@@ -82,18 +103,24 @@ public class TimeBomb {
 
             selectedColumn = gameGrid[timeBombColumnIndex];
             timeBombCounterNumber = turnPlayer.getTimeBomb().getNumberInGrid();
-            validColumn = TurnMechanism.takeTurnDropCounter(timeBombCounterNumber, selectedColumn);
+            columnHasSpace = TurnMechanism.takeTurnDropCounter(timeBombCounterNumber, selectedColumn);
 
-            if (!validColumn) {
+            if (!columnHasSpace) {
                 System.out.printf("Please select another column to use your Time Bomb special move. \n");
 
             }
 
-        } while (!validColumn) ;
+        } while (!columnHasSpace) ;
 
         return timeBombColumnIndex;
     }
 
+    /**
+     * Method to prompt the player to choose a column to drop their time bomb counter into
+     * <p>If they enter an out of bounds column index they will be prompted to re-enter</p>
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     * @return integer - Column index of the game grid column the time bomb counter was placed into
+     */
     public static int timeBombSelectColumnPrompt (int[][] gameGrid){
 
         int minColumnNumber = 0;
@@ -108,6 +135,12 @@ public class TimeBomb {
         return selectedColumn;
     }
 
+    /**
+     * Method to check the number of empty spaces remaining in a Connect 4 game grid
+     * <p>An empty space has a value of '-1' in the game grid integer array</p>
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     * @return integer - number of empty spaces left in a game grid
+     */
     public static int numberEmptySpacesInGrid (int[][] gameGrid) {
 
         int noEmptyGridSpaces = 0;
@@ -127,6 +160,13 @@ public class TimeBomb {
         return noEmptyGridSpaces;
     }
 
+    /**
+     * Method to clear grid spaces directly adjacent and diagonal to the time bomb counter, and drop the counters above down to fill the space
+     * <p>The method takes into account cases where the time bomb counter is at the edge or corner of the game grid</p>
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     * @param timeBombColumnIndex - Integer index of the game grid column the time bomb has been placed into
+     * @param timeBombRowIndex - Integer index of the game grid row the time bomb has been placed into
+     */
     public static void timeBombExplosion (int[][] gameGrid, int timeBombColumnIndex, int timeBombRowIndex) {
 
         int minColumnIndex;
@@ -181,6 +221,7 @@ public class TimeBomb {
                 }
             }
 
+
         } else {
 
             // looping through the game grid to clear the values when the time bomb 'explodes' and drop the counters above into the cleared space
@@ -199,9 +240,9 @@ public class TimeBomb {
                         gameGrid[i][j - 3] = -1;
                     }
                 }
-
             }
-
         }
+
+
     }
 }

@@ -1,15 +1,12 @@
 package org.example.Turn;
 
-import org.example.Grid.BuildGrid;
-import org.example.Grid.PrintGrid;
-
 public class TurnMechanism {
 
     /**
      * Method to 'drop' a player's counter into the top empty space in a column pre-selected by the player
-     * <P>The method will return false if the column is full and the play is not valid</P>
+     * <p>The method will return false if the column is full and the play is not valid</p>
      * @param counterInteger - An integer value representing the player's counter.
-     * @param column - A column in the connect 4 grid which has been selected by a player to drop their counter into
+     * @param column - A column in the Connect 4 grid which has been selected by a player to drop their counter into
      * @return - boolean: true if the move was completed and valid, false if the column is full and the move is not valid.
      */
     public static boolean takeTurnDropCounter (int counterInteger, int[] column){
@@ -25,9 +22,8 @@ public class TurnMechanism {
 
     /**
      * Method to find the top empty cell in a column, returning the index of the empty cell.
-     * <P>
-     * Takes a 1D array representing a column in the connect 4 grid, this function looks through the column to find the first index
-     * which can be written to. This returns -1 if the column is full.
+     * <p> Takes a 1D array representing a column in the Connect 4 grid, this function looks through the column to find the first index
+     * which can be written to. This returns -1 if the column is full. </p>
      * @param column the 1D array to find the first empty index of.
      * @return the first empty index. This is -1 if the column is full.
      */
@@ -44,7 +40,7 @@ public class TurnMechanism {
         }
 
         //If the method has not yet returned a value, all column values are -1
-        // We will return the 'bottom' index at the base of the column on the connect 4 grid to write into.
+        // We will return the 'bottom' index at the base of the column on the Connect 4 grid to write into.
         return column.length - 1;
     }
 }
