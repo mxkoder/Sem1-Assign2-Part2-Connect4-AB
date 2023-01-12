@@ -50,8 +50,6 @@ public class GameWin {
     /**
      * Method to print the game grid and then a message to the winning player
      * @param winningPlayer - Winning player object with associated counter and special moves
-     * @param otherPlayer - Player object with associated counter and special moves
-     * @param gameGrid - 2D integer array representing a Connect 4 game grid
      */
     public static void winningPlayerMessage (Player winningPlayer, Player otherPlayer, int[][] gameGrid) {
 

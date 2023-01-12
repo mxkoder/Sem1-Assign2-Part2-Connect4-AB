@@ -1,5 +1,7 @@
 package org.example.SpecialMoves;
 
+import org.example.GameEnd.Draw;
+import org.example.GameEnd.GameWin;
 import org.example.GamePlay.GamePlay;
 import org.example.Player.Player;
 import org.example.Turn.TurnMechanism;
@@ -51,8 +53,9 @@ public class TimeBomb {
      * @param turnPlayer - Player object whose current turn it is with associated counter and special moves
      * @param otherPlayer -Player object with associated counter and special moves
      * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     * @return boolean - Will return false if the game is won before the time bomb goes off
      */
-    public static void timeBombTurnSequence (Player turnPlayer, Player otherPlayer, int[][] gameGrid) {
+    public static boolean timeBombTurnSequence (Player turnPlayer, Player otherPlayer, int[][] gameGrid) {
 
         // ----------Turn to drop the time bomb (continued) ------------------------
         int timeBombColumnIndex = timeBombDropCounter(turnPlayer, gameGrid);
@@ -65,14 +68,26 @@ public class TimeBomb {
 
         // ----------Other player, 1st turn during time bomb ------------------------
         GamePlay.singleTurnWithPrint(otherPlayer, turnPlayer, gameGrid);
+        if (GameWin.haveWinner(gameGrid) || Draw.gameIsADraw(gameGrid)) {
+            return false;
+        }
 
         // ----------Turn player, 1st turn during time bomb ------------------------
         GamePlay.singleTurnWithPrint(turnPlayer, otherPlayer, gameGrid);
+        if (GameWin.haveWinner(gameGrid) || Draw.gameIsADraw(gameGrid)) {
+            return false;
+        }
 
         // ----------Other player, 2nd turn during time bomb ------------------------
         GamePlay.singleTurnWithPrint(otherPlayer, turnPlayer, gameGrid);
+        if (GameWin.haveWinner(gameGrid) || Draw.gameIsADraw(gameGrid)) {
+            return false;
+        }
 
         GamePlay.printPlayersAndGrid(turnPlayer, otherPlayer, gameGrid);
+        if (GameWin.haveWinner(gameGrid) || Draw.gameIsADraw(gameGrid)) {
+            return false;
+        }
 
         // ----------Time Bomb explodes ------------------------
         timeBombExplosion(gameGrid, timeBombColumnIndex, timeBombRowIndex);
@@ -81,6 +96,8 @@ public class TimeBomb {
 
         // Reset sequence of turns
         GamePlay.singleTurnWithPrint(turnPlayer, otherPlayer, gameGrid);
+
+        return true;
      }
 
     /**
