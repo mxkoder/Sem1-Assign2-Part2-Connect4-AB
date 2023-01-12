@@ -2,7 +2,6 @@ package org.example.GameEnd;
 
 public class WinConditions {
 
-
     /**
      * Method to check for a row of 4 identical counters in a game grid
      *
@@ -32,7 +31,6 @@ public class WinConditions {
 
         return valueOfWinningCounter;
     }
-
 
     /**
      * Method to check for a column of 4 identical counters in a game grid
@@ -104,6 +102,5 @@ public class WinConditions {
 
         return valueOfWinningCounter;
     }
-
 }
 

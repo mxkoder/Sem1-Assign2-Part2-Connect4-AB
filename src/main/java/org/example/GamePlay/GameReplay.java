@@ -2,7 +2,6 @@ package org.example.GamePlay;
 
 import org.example.Player.Player;
 import org.example.SpecialMoves.Blitz;
-import org.example.SpecialMoves.SpecialMove;
 import org.example.SpecialMoves.TimeBomb;
 
 import java.util.Scanner;
@@ -80,5 +79,4 @@ public class GameReplay {
         player.setBlitz(Blitz.blitzInitialise());
         player.setTimeBomb(TimeBomb.timeBombInitialise());
     }
-
 }

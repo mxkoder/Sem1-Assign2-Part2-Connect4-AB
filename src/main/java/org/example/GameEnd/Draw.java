@@ -34,7 +34,6 @@ public class Draw {
         return false;
     }
 
-
     /**
      * Method to check if the game grid is filled with counters or not
      * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters

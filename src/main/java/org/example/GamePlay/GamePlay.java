@@ -52,6 +52,7 @@ public class GamePlay {
         }
     }
 
+
     /**
      * Method to enable players 1 and 2 to play a game of Connect4 taking turns, and print out the end game result
      * <P>Players take turns to drop counters into the Connect4 for grid until one of the end game conditions is met.
@@ -79,10 +80,14 @@ public class GamePlay {
         // Game results:
         GameWin.printWinnerIfGameWon(player1, player2, gameGrid);
         Draw.printMessageIfGameDraw(player1, player2, gameGrid);
-
     }
 
-    //TODO java doc
+    /**
+     * Method to print the game grid and player information, and then star a player turn
+     * @param player1 - Player object with associated counter and special moves
+     * @param player2 - Player object with associated counter and special moves
+     * @param gameGrid - 2D integer array game grid to store positions of the Connect4 counters
+     */
     public static void singleTurnWithPrint (Player player1, Player player2, int [][] gameGrid) {
         printPlayersAndGrid(player1, player2, gameGrid);
         Turn.interpretPlayerCommand(player1, player2, gameGrid);

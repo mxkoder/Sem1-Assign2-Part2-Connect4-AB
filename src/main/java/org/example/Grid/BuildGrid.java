@@ -37,6 +37,5 @@ public class BuildGrid {
 
         return column;
     }
-
 }
 
