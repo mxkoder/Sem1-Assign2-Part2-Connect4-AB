@@ -1,10 +1,3 @@
-
-link - [Manchester Codes](https://www.manchestercodes.com/)
-
-images:
-![node REPL cruise ship setup](/images/node-REPL-cruise-ship-setup.png)
-
-
 # Connect4 Console Game 
 
 ## About
@@ -54,7 +47,7 @@ Time bomb clearing counters:
 ![time bomb exploding](/readme-images/time-bomb-exp.png)
 
 ### Validation and prompts
-There are several validation and prompts within the project. If a user enters an invalid value, they will be prompted to select again with a message highlighting the error. 
+There are several criteria validation and prompts to re-enter values within the project. If a user enters an invalid value, they will be prompted to select again with a message highlighting the error. 
 
 Examples of validation and error prompts:
 * Selecting a column
@@ -74,16 +67,34 @@ When the win or draw conditions have been met, and end game message is printed t
 This project has been completed alongside an essay on the software engineering design principles of high cohesion, low coupling, information hiding, and data hiding. An attempt has been made to apply these principles in the Connect 4 console game, with aspects of OOP applied. 
 
 Learning and links used to learn new concepts:
+* [Classes and contructors in Java] (https://www.javatpoint.com/java-constructor) [1]
+* [Using 'this' keyword in Java] (https://www.w3schools.com/java/ref_keyword_this.asp) [2]
+* [Learning how to use regular expressions and syntax] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet) [3]
+* [Public vs Private access modifiers in Java] (https://www.geeksforgeeks.org/public-vs-private-access-modifiers-in-java/) [4]
+* [Creating objects in Java] (https://docs.oracle.com/javase/tutorial/java/javaOO/objectcreation.html) [5]
 
 
 ## Further work
 To improve this project with more time, I would:
 * Add a game play option to choose a custom grid size and custom number for the length of row to win a game. 
-* Work on the test and replace method calls with stubs or mocks. Currently there are some interdependencies.
-* Refactor some of the longer methods, and improve the logic in particular in the timeBombExplosion method. 
+* Work on the test and replace method calls with stubs or mocks. Currently, there are some interdependencies.
+* Refactor some longer methods, and improve the logic in particular in the timeBombExplosion method. 
 * add an AI opponent. 
 
 
 ## Author
 
 Agnes Beviz
+
+
+## References
+
+[1] JavaTpoint. (2021). Constructors in Java. Available:  https://www.javatpoint.com/java-constructor
+
+[2] W3Schools. (2023). Java this Keyword. Available: https://www.w3schools.com/java/ref_keyword_this.asp
+
+[3] MDN Web Docs. (2023). Regular expression syntax cheat sheet. Available: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet
+
+[4] GeeksForGeeks. (2021). Available: https://www.geeksforgeeks.org/public-vs-private-access-modifiers-in-java/
+
+[5] Oracle Java Documentation. (2022). Available: https://docs.oracle.com/javase/tutorial/java/javaOO/objectcreation.html
