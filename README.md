@@ -67,11 +67,11 @@ When the win or draw conditions have been met, and end game message is printed t
 This project has been completed alongside an essay on the software engineering design principles of high cohesion, low coupling, information hiding, and data hiding. An attempt has been made to apply these principles in the Connect 4 console game, with aspects of OOP applied. 
 
 Learning and links used to learn new concepts:
-* [Classes and contructors in Java] (https://www.javatpoint.com/java-constructor) [1]
-* [Using 'this' keyword in Java] (https://www.w3schools.com/java/ref_keyword_this.asp) [2]
-* [Learning how to use regular expressions and syntax] (https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet) [3]
-* [Public vs Private access modifiers in Java] (https://www.geeksforgeeks.org/public-vs-private-access-modifiers-in-java/) [4]
-* [Creating objects in Java] (https://docs.oracle.com/javase/tutorial/java/javaOO/objectcreation.html) [5]
+* [Classes and contructors in Java](https://www.javatpoint.com/java-constructor) [1]
+* [Using 'this' keyword in Java](https://www.w3schools.com/java/ref_keyword_this.asp) [2]
+* [Learning how to use regular expressions and syntax](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Regular_Expressions/Cheatsheet) [3]
+* [Public vs Private access modifiers in Java](https://www.geeksforgeeks.org/public-vs-private-access-modifiers-in-java/) [4]
+* [Creating objects in Java](https://docs.oracle.com/javase/tutorial/java/javaOO/objectcreation.html) [5]
 
 
 ## Further work
